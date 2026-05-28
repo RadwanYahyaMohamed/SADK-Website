@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz History - Deutsch Klub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/test-banks.css">
+    <link rel="icon" type="image/png" href="../images/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar (نفس الكود القديم) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../images/Logo.png" alt="Deutsch Klub Logo" class="logo-img">
+                <span class="logo-text">STEM Asyut Deutsch Klub</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Learn German ▼</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="Materials.html" class="dropdown-toggle-sub">Materials</a></li>
+                        <li class="dropdown-item">
+                            <a href="#" class="dropdown-toggle-sub">G10 ▼</a>
+                            <ul class="dropdown-submenu">
+                                <li class="dropdown-item"><a href="curriculum/g10/semester1/lektionen.html">Semester 1</a></li>
+                                <li class="dropdown-item"><a href="curriculum/g10/semester2/lektionen.html">Semester 2</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="#" class="dropdown-toggle-sub">G11 ▼</a>
+                            <ul class="dropdown-submenu">
+                                <li class="dropdown-item"><a href="curriculum/g11/semester1/lektionen.html">Semester 1</a></li>
+                                <li class="dropdown-item"><a href="curriculum/g11/semester2/lektionen.html">Semester 2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+                <li class="nav-item"><a href="test-banks.html" class="nav-link active">Quizzes</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <img src="../images/Bg.png" alt="Background" class="bg-image">
+            <div class="overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Quiz <span class="highlight">History</span></h1>
+            <p class="hero-subtitle">Track your progress and celebrate achievements</p>
+        </div>
+    </section>
+
+    <!-- Quizzes Section -->
+    <section class="quizzes-section">
+        <div class="quizzes-container">
+            
+            <!-- Quiz Card: Term-Wide Online Examination -->
+            <div class="quiz-card" id="quiz-term-wide">
+                <div class="quiz-header">
+                    <div class="quiz-image">
+                        <img src="../images/Quiz.jpeg" alt="Term-Wide Online Examination">
+                    </div>
+                    <div class="quiz-info">
+                        <div class="quiz-badge">
+                            <span class="badge date-badge"><i class="fas fa-calendar-alt"></i> January 05, 2026</span>
+                            <span class="badge type-badge"><i class="fas fa-globe"></i> Online Exam</span>
+                        </div>
+                        <h2 class="quiz-title">Term-Wide Online Examination</h2>
+                        <p class="quiz-subtitle">Grade 10 - Complete First Term Curriculum</p>
+                    </div>
+                    <button class="toggle-details">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                
+                <div class="quiz-details">
+                    <!-- Stats Row -->
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <div class="stat-info">
+                                <span class="stat-value">23</span>
+                                <span class="stat-label">Participants</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-chart-line"></i>
+                            <div class="stat-info">
+                                <span class="stat-value">25.8 / 30</span>
+                                <span class="stat-label">Average Score</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-clock"></i>
+                            <div class="stat-info">
+                                <span class="stat-value">27:44</span>
+                                <span class="stat-label">Average Time</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-trophy"></i>
+                            <div class="stat-info">
+                                <span class="stat-value">9</span>
+                                <span class="stat-label">Top Performers</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="description-box">
+                        <h3><i class="fas fa-info-circle"></i> About the Exam</h3>
+                        <p>The club administered a comprehensive online exam on January 5, 2026, testing the complete Grade 10 term curriculum. Designed to evaluate core skills under realistic conditions, the exam was taken by 23 students.</p>
+                        <p>Participants demonstrated strong understanding, achieving an impressive average score of 26.3/30 with an average completion time of 27.44 minutes. Top performers were recognized with official certificates and prizes, highlighting the success of the term's learning program.</p>
+                    </div>
+
+                    <!-- Leaderboard -->
+                    <div class="leaderboard-box">
+                        <h3><i class="fas fa-trophy"></i> Top Performers</h3>
+                        <div class="leaderboard-grid">
+                            <div class="leaderboard-category gold">
+                                <div class="category-header">
+                                    <i class="fas fa-crown"></i>
+                                    <h4>First Place</h4>
+                                </div>
+                                <ul class="winner-list">
+                                    <li>🏆 Magdy Mohammed Mahmoud Mostafa</li>
+                                    <li>🏆 Demiana Hany Samir</li>
+                                    <li>🏆 Mariam Shenoda</li>
+                                </ul>
+                            </div>
+                            <div class="leaderboard-category silver">
+                                <div class="category-header">
+                                    <i class="fas fa-medal"></i>
+                                    <h4>Second Place</h4>
+                                </div>
+                                <ul class="winner-list">
+                                    <li>🥈 Nada Sameh Sayed</li>
+                                    <li>🥈 Rawan Mohamed Ali</li>
+                                </ul>
+                            </div>
+                            <div class="leaderboard-category bronze">
+                                <div class="category-header">
+                                    <i class="fas fa-medal"></i>
+                                    <h4>Third Place</h4>
+                                </div>
+                                <ul class="winner-list">
+                                    <li>🥉 Sondos Ali Abdallah</li>
+                                    <li>🥉 omnia Rageb</li>
+                                    <li>🥉 Yasmine Mohamed Ibrahim</li>
+                                    <li>🥉 Marwan Mohamed</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificates (Award Cards) -->
+                    <div class="certificates-box">
+                        <h3><i class="fas fa-certificate"></i> Award Certificates</h3>
+                        <p class="certificates-note">🎓 9 certificates were awarded to top performers</p>
+
+                        <!-- First Place (Gold) -->
+                        <div class="award-section">
+                            <div class="award-title">
+                                <i class="fas fa-crown"></i>
+                                <h4>🥇 First Place</h4>
+                            </div>
+                            <div class="certificates-grid">
+                                <div class="certificate-card certificate-first">
+                                    <div class="cert-medal">🥇</div>
+                                    <img src="../images/Magdy.jpeg" alt="Magdy Mohammed Mahmoud Mostafa" class="cert-image">
+                                    <h4 class="cert-name">Magdy Mohammed<br>Mahmoud Mostafa</h4>
+                                    <p class="cert-rank">1st Place Winner</p>
+                                    <div class="cert-actions">
+                                        <a href="https://drive.google.com/file/d/1v60hjfz5RdnKHJNEwA3O6BG3Wtpbw3fh/view?usp=drive_link" target="_blank" class="cert-btn">View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="certificate-card certificate-first">
+                                    <div class="cert-medal">🥇</div>
+                                    <img src="../images/Demiana Hany.jpeg" alt="Demiana Hany Samir" class="cert-image">
+                                    <h4 class="cert-name">Demiana Hany<br>Samir</h4>
+                                    <p class="cert-rank">1st Place Winner</p>
+                                    <div class="cert-actions">
+                                        <a href="https://drive.google.com/file/d/14SPpqHADFOcwTb7egIZs5_hIed2eBFPI/view?usp=drive_link" target="_blank" class="cert-btn">View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="certificate-card certificate-first">
+                                    <div class="cert-medal">🥇</div>
+                                    <img src="../images/Mariam Shenoda.jpeg" alt="Mariam Shenoda" class="cert-image">
+                                    <h4 class="cert-name">Mariam<br>Shenoda</h4>
+                                    <p class="cert-rank">1st Place Winner</p>
+                                    <div class="cert-actions">
+                                        <a href="https://drive.google.com/file/d/1kGII47_3l1FobrXR8REz2cmXRi2mBx52/view?usp=drive_link" target="_blank" class="cert-btn">View Certificate</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Place (Silver) -->
+                        <div class="award-section">
+                            <div class="award-title">
+                                <i class="fas fa-medal"></i>
+                                <h4>🥈 Second Place</h4>
+                            </div>
+                            <div class="certificates-grid">
+                                <div class="certificate-card certificate-second">
+                                    <div class="cert-medal">🥈</div>
+                                    <img src="../images/Nada Sameh.jpeg" alt="Nada Sameh Sayed" class="cert-image">
+                                    <h4 class="cert-name">Nada Sameh<br>Sayed</h4>
+                                    <p class="cert-rank">2nd Place Winner</p>
+                                    <div class="cert-actions">
+                                        <a href="https://drive.google.com/file/d/17xpBI-gIotDDuIcaMfjPITBE0GUZMsSI/view?usp=drive_link" target="_blank" class="cert-btn">View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="certificate-card certificate-second">
+                                    <div class="cert-medal">🥈</div>
+                                    <img src="../images/Rawan Mohamed.jpeg" alt="Rawan Mohamed Ali" class="cert-image">
+                                    <h4 class="cert-name">Rawan Mohamed<br>Ali</h4>
+                                    <p class="cert-rank">2nd Place Winner</p>
+                                    <div class="cert-actions">
+                                        <a href="https://drive.google.com/file/d/1Bie_zvQCIiSAN0epcM2Hj5Oh7ChTtaSw/view?usp=drive_link" target="_blank" class="cert-btn">View Certificate</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Third Place (Bronze) -->
+                        <div class="award-section">
+                            <div class="award-title">
+                                <i class="fas fa-medal"></i>
+                                <h4>🥉 Third Place</h4>
+                            </div>
+                            <div class="certificates-grid">
+                                <div class="certificate-card certificate-third">
+                                    <div class="cert-medal">🥉</div>
+                                    <img src="../images/Sondos Ali.jpeg" alt="Sondos Ali Abdallah" class="cert-image">
+                                    <h4 class="cert-name">Sondos Ali<br>Abdallah</h4>
+                                    <p class="cert-rank">3rd Place Winner</p>
+                                    <div class="cert-actions">
+                                        <a href="https://drive.google.com/file/d/1Dtt87ny75jR358cxfBq5liuhHh8BO0L6/view?usp=drive_link" target="_blank" class="cert-btn">View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="certificate-card certificate-third">
+                                    <div class="cert-medal">🥉</div>
+                                    <img src="../images/Omnia Ragab.jpeg" alt="Omnia Rageb" class="cert-image">
+                                    <h4 class="cert-name">Omnia<br>Ragab</h4>
+                                    <p class="cert-rank">3rd Place Winner</p>
+                                    <div class="cert-actions">
+                                        <a href="https://drive.google.com/file/d/1QGugpuHYCkxnHLhXUu_yhL_b9Hl9Y_S1/view?usp=drive_link" target="_blank" class="cert-btn">View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="certificate-card certificate-third">
+                                    <div class="cert-medal">🥉</div>
+                                    <img src="../images/Yasmine Mohamed.jpeg" alt="Yasmine Mohamed Ibrahim" class="cert-image">
+                                    <h4 class="cert-name">Yasmine Mohamed<br>Ibrahim</h4>
+                                    <p class="cert-rank">3rd Place Winner</p>
+                                    <div class="cert-actions">
+                                        <a href="https://drive.google.com/file/d/1P3z0x6k3MRsVLV-aywakQW7mALeFuU5X/view?usp=drive_link" target="_blank" class="cert-btn">View Certificate</a>
+                                    </div>
+                                </div>
+                                <div class="certificate-card certificate-third">
+                                    <div class="cert-medal">🥉</div>
+                                    <img src="../images/Marwan Mohamed .jpeg" alt="Marwan Mohamed" class="cert-image">
+                                    <h4 class="cert-name">Marwan<br>Mohamed</h4>
+                                    <p class="cert-rank">3rd Place Winner</p>
+                                    <div class="cert-actions">
+                                        <a href="https://drive.google.com/file/d/1EpEkBSrkfD69LpymoA3xsyPqMpCvhQsC/view?usp=drive_link" target="_blank" class="cert-btn">View Certificate</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 30px;">
+                            <a href="https://drive.google.com/drive/folders/1ptJxrImQt0Ow97rMrpy3lIaok-kzohJ3" target="_blank" class="btn btn-secondary">
+                                <i class="fab fa-google-drive"></i> Open Full Certificates Folder
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Full Analysis Link -->
+                    <div class="analysis-link">
+                        <a href="https://forms.office.com/Pages/AnalysisPage.aspx?AnalyzerToken=8jTa6AMpSHj2GgAJ7ZzhoGHErZoHLUDG&id=MueKh8VZ40CNSZHnmIvM_czKrAwWvhpMm8hjuJG-iuRUMUc3NVpMMDE2S0dTTEwwUkdIS0hGU0NCTy4u" target="_blank" class="btn btn-primary">
+                            <i class="fas fa-chart-bar"></i> View Full Analysis
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Future Quizzes -->
+            <div class="future-quizzes">
+                <div class="future-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>More Quizzes Coming Soon</h3>
+                <p>Stay tuned for upcoming assessments and competitions!</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Deutsch Klub</h3>
+                    <p>Empowering students to excel in German language learning</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="about.html">About Team</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="test-banks.html">Quizzes</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScHW62ctySetNvA77ugYEDBZ3rTEvPl_3uHlcNOVpsYtgZROw/viewform?usp=header" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                Apply Now! — Members Form
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p class="contact-number">+201024012428</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61564110370482" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="mailto:stemasyutdeutschklub@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/company/stem-asyut-deutsch-klub/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VbBIB41ISTkC7JuaUb1q" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SADK - STEM Asyut Deutsch Klub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="../js/main.js"></script>
+    <script src="../js/test-banks.js"></script>
+</body>
+</html>

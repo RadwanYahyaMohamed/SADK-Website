@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Deutsch Klub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/resources.css">
+    <link rel="icon" type="image/png" href="../images/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../images/Logo.png" alt="Deutsch Klub Logo" class="logo-img">
+                <span class="logo-text">STEM Asyut Deutsch Klub</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Learn German ▼</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="Materials.html" class="dropdown-toggle-sub">Materials</a></li>
+                        <li class="dropdown-item">
+                            <a href="#" class="dropdown-toggle-sub">G10 ▼</a>
+                            <ul class="dropdown-submenu">
+                                <li class="dropdown-item"><a href="curriculum/g10/semester1/lektionen.html">Semester 1</a></li>
+                                <li class="dropdown-item"><a href="curriculum/g10/semester2/lektionen.html">Semester 2</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="#" class="dropdown-toggle-sub">G11 ▼</a>
+                            <ul class="dropdown-submenu">
+                                <li class="dropdown-item"><a href="curriculum/g11/semester1/lektionen.html">Semester 1</a></li>
+                                <li class="dropdown-item"><a href="curriculum/g11/semester2/lektionen.html">Semester 2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="resources.html" class="nav-link active">Resources</a></li>
+                <li class="nav-item"><a href="test-banks.html" class="nav-link">Quizzes</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <img src="../images/ygaghg.jpeg" alt="Background" class="bg-image">
+            <div class="overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Learning <span class="highlight">Resources</span></h1>
+            <p class="hero-subtitle">Your curated collection of German learning materials, books, and websites</p>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources-section">
+        <div class="resources-container">
+            <div class="resources-headline" data-reveal>
+                <h2 class="resources-title">Explore German Learning Resources</h2>
+                <p class="resources-subtitle">Filter by category and discover the best free tools, websites, and playlists for every stage.</p>
+            </div>
+
+            <div class="resources-stats" data-reveal>
+                <div class="stat-item"><strong id="visible-resources-count">15</strong><span>Resources</span></div>
+                <div class="stat-item"><strong>6</strong><span>Categories</span></div>
+                <div class="stat-item"><strong>A1-B1</strong><span>Levels</span></div>
+                <div class="stat-item"><strong>100%</strong><span>Free</span></div>
+            </div>
+
+            <div class="filter-tabs" data-reveal>
+                <button class="filter-tab active" data-filter="all" type="button">All</button>
+                <button class="filter-tab" data-filter="dictionaries" type="button">Dictionaries</button>
+                <button class="filter-tab" data-filter="video-courses" type="button">Video Courses</button>
+                <button class="filter-tab" data-filter="dw-german" type="button">DW German</button>
+                <button class="filter-tab" data-filter="reading-stories" type="button">Reading & Stories</button>
+                <button class="filter-tab" data-filter="easy-german" type="button">Easy German</button>
+                <button class="filter-tab" data-filter="pronunciation" type="button">Pronunciation</button>
+            </div>
+
+            <div class="category-blocks" data-reveal>
+                <article class="category-block" data-filter="dictionaries" role="button" tabindex="0" aria-label="Filter: Dictionaries" style="--cat-color:#7c3aed;--cat-light:#f3e8ff;">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Dictionaries</h3>
+                    <p>Vocabulary, spelling, and translation support.</p>
+                </article>
+                <article class="category-block" data-filter="video-courses" role="button" tabindex="0" aria-label="Filter: Video Courses" style="--cat-color:#dc2626;--cat-light:#fee2e2;">
+                    <i class="fab fa-youtube"></i>
+                    <h3>Video Courses</h3>
+                    <p>Structured playlists for guided level progress.</p>
+                </article>
+                <article class="category-block" data-filter="dw-german" role="button" tabindex="0" aria-label="Filter: DW German" style="--cat-color:#1d4ed8;--cat-light:#dbeafe;">
+                    <i class="fas fa-globe"></i>
+                    <h3>DW German</h3>
+                    <p>Deutsche Welle learning tracks and practice.</p>
+                </article>
+                <article class="category-block" data-filter="reading-stories" role="button" tabindex="0" aria-label="Filter: Reading and Stories" style="--cat-color:#4f46e5;--cat-light:#eef2ff;">
+                    <i class="fas fa-book-reader"></i>
+                    <h3>Reading & Stories</h3>
+                    <p>Short texts and dialogues for listening and reading practice.</p>
+                </article>
+                <article class="category-block" data-filter="easy-german" role="button" tabindex="0" aria-label="Filter: Easy German" style="--cat-color:#ea580c;--cat-light:#ffedd5;">
+                    <i class="fas fa-street-view"></i>
+                    <h3>Easy German</h3>
+                    <p>Real-life German through interviews, podcasts, and immersion.</p>
+                </article>
+                <article class="category-block" data-filter="pronunciation" role="button" tabindex="0" aria-label="Filter: Pronunciation" style="--cat-color:#059669;--cat-light:#d1fae5;">
+                    <i class="fas fa-microphone-alt"></i>
+                    <h3>Pronunciation</h3>
+                    <p>Hear native speakers and perfect your pronunciation.</p>
+                </article>
+            </div>
+
+            <div class="resource-grid">
+                <article class="resource-card reveal-item" data-reveal data-category="dictionaries" style="--cat-color:#7c3aed;--cat-light:#f3e8ff;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/ARABDICT.png" alt="arabdict cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=arabdict.com&sz=64" alt="arabdict favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">All Levels</span>
+                        <span class="card-badge category-badge">Dictionaries</span>
+                        <h3>arabdict</h3>
+                        <p>Master German Vocabulary — Comprehensive Arabic-German dictionary with contextual usage examples and complete verb conjugation tables.</p>
+                        <a href="https://www.arabdict.com" target="_blank" rel="noopener noreferrer" class="card-btn">Visit</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="dictionaries" style="--cat-color:#7c3aed;--cat-light:#f3e8ff;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/DUDEN.png" alt="Duden cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=duden.de&sz=64" alt="Duden favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">All Levels</span>
+                        <span class="card-badge category-badge">Dictionaries</span>
+                        <h3>Duden</h3>
+                        <p>Refine Your German Accuracy — The authoritative guide to German spelling, grammar, and definitions used by native speakers.</p>
+                        <a href="https://www.duden.de" target="_blank" rel="noopener noreferrer" class="card-btn">Visit</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="dictionaries" style="--cat-color:#7c3aed;--cat-light:#f3e8ff;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../images/DICTCC.png" alt="dict.cc cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=dict.cc&sz=64" alt="dict.cc favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">All Levels</span>
+                        <span class="card-badge category-badge">Dictionaries</span>
+                        <h3>dict.cc</h3>
+                        <p>Expand Your German Vocabulary — Collaborative multi-language dictionary with authentic audio pronunciations by native speakers.</p>
+                        <a href="https://www.dict.cc" target="_blank" rel="noopener noreferrer" class="card-btn">Visit</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="video-courses" style="--cat-color:#dc2626;--cat-light:#fee2e2;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/Ahmed kamaaal.jpg" alt="Netzwerk Neu A1.1 cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="YouTube favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A1.1</span>
+                        <span class="card-badge category-badge">Video Courses</span>
+                        <h3>Netzwerk Neu A1.1 - Ahmed Kamel</h3>
+                        <p>Master German A1.1 — Organized video lessons following the Netzwerk Neu textbook series chapter by chapter.</p>
+                        <a href="https://youtube.com/playlist?list=PLZNZfCs0O9e9MCWbiu6HkP5UF9QjR3TpN" target="_blank" rel="noopener noreferrer" class="card-btn">Watch</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="video-courses" style="--cat-color:#dc2626;--cat-light:#fee2e2;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/Ahmed kamaaal.jpg" alt="Netzwerk Neu A1.2 cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="YouTube favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A1.2</span>
+                        <span class="card-badge category-badge">Video Courses</span>
+                        <h3>Netzwerk Neu A1.2 - Ahmed Kamel</h3>
+                        <p>Continue to A1.2 — Organized video lessons for the Netzwerk Neu textbook series, Level A1.2.</p>
+                        <a href="https://youtube.com/playlist?list=PLZNZfCs0O9e8AU9lXVLcpbDfNk1w1wCIr" target="_blank" rel="noopener noreferrer" class="card-btn">Watch</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="video-courses" style="--cat-color:#dc2626;--cat-light:#fee2e2;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/Ahmed kamal AZWEI.jpg" alt="Netzwerk Neu A2.1 cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="YouTube favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A2.1</span>
+                        <span class="card-badge category-badge">Video Courses</span>
+                        <h3>Netzwerk Neu A2.1 - Ahmed Kamel</h3>
+                        <p>Advance to A2.1 — Organized video lessons for the Netzwerk Neu textbook series, Level A2.1.</p>
+                        <a href="https://youtube.com/playlist?list=PLZNZfCs0O9e_-NmG2cYBPj7yeT_Kdqtg0" target="_blank" rel="noopener noreferrer" class="card-btn">Watch</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="video-courses" style="--cat-color:#dc2626;--cat-light:#fee2e2;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../images/SHEHATADEUTSCH.jpg" alt="Shehata course cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="YouTube favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A1</span>
+                        <span class="card-badge category-badge">Video Courses</span>
+                        <h3>German A1 for Beginners - Shehata</h3>
+                        <p>Master German from Zero — Comprehensive video lessons for absolute beginners by Herr Shehata.</p>
+                        <a href="https://youtube.com/playlist?list=PLOLEcgfCxrf-_aFPd2gnBsHfA066_Ka0M" target="_blank" rel="noopener noreferrer" class="card-btn">Watch</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="video-courses" style="--cat-color:#dc2626;--cat-light:#fee2e2;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../images/ISLAM ABDO.jpg" alt="Grammatik Aktiv course cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="YouTube favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A1-B1</span>
+                        <span class="card-badge category-badge">Video Courses</span>
+                        <h3>Grammatik Aktiv - Islam Abdo</h3>
+                        <p>Master German Grammar — Expert video walkthroughs of the Grammatik Aktiv textbook by Herr Islam Abdo.</p>
+                        <a href="https://youtube.com/playlist?list=PLscd3fQmpgeXwP-bIZdm7qZpAoGtA79H0&si=a4LGM3SQFr3vhAlb" target="_blank" rel="noopener noreferrer" class="card-btn">Watch</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="video-courses" style="--cat-color:#dc2626;--cat-light:#fee2e2;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/easy german.jpg" alt="Easy German A1 cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="YouTube favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A1</span>
+                        <span class="card-badge category-badge">Video Courses</span>
+                        <h3>Easy German A1</h3>
+                        <p>Learn German Naturally — Immersive A1 video lessons, real conversations with Arabic and English subtitles.</p>
+                        <a href="https://youtube.com/playlist?list=PLk1fjOl39-50kWobutO8NVFzbw9PHtbbg" target="_blank" rel="noopener noreferrer" class="card-btn">Watch</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="dw-german" style="--cat-color:#1d4ed8;--cat-light:#dbeafe;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/DW WEB.png" alt="DW Free Courses cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=learngerman.dw.com&sz=64" alt="DW favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A1-B1</span>
+                        <span class="card-badge category-badge">DW German</span>
+                        <h3>DW Free Courses (A1-B1)</h3>
+                        <p>Master German from Zero — Comprehensive interactive courses for levels A1 to B1 from Deutsche Welle. 100% free.</p>
+                        <a href="https://learngerman.dw.com/en/learn-german/s-9528" target="_blank" rel="noopener noreferrer" class="card-btn">Visit</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="dw-german" style="--cat-color:#1d4ed8;--cat-light:#dbeafe;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/NICOSWEG.jpg" alt="Nicos Weg cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="YouTube favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A1</span>
+                        <span class="card-badge category-badge">DW German</span>
+                        <h3>Nicos Weg - DW</h3>
+                        <p>Complete beginner A1 video series by Deutsche Welle. Follow Nico's story and learn German naturally.</p>
+                        <a href="https://youtube.com/playlist?list=PLs7zUO7VPyJ6eoN6SmB1UcwvPUagK87ix" target="_blank" rel="noopener noreferrer" class="card-btn">Watch</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="dw-german" style="--cat-color:#1d4ed8;--cat-light:#dbeafe;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/NICOSARABRIC.png" alt="Nicos Weg Arabic cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="YouTube favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A1</span>
+                        <span class="card-badge category-badge">DW German</span>
+                        <h3>Nicos Weg (Arabic Captions)</h3>
+                        <p>DW A1 course with full Arabic subtitles — specially adapted for Arabic-speaking learners.</p>
+                        <a href="https://youtu.be/4iraI6VBjNo" target="_blank" rel="noopener noreferrer" class="card-btn">Watch</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="easy-german" style="--cat-color:#ea580c;--cat-light:#ffedd5;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/EASYGERMANWEB.png" alt="Easy German website cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=easygerman.org&sz=64" alt="Easy German favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A1-B1</span>
+                        <span class="card-badge category-badge">Easy German</span>
+                        <h3>Easy German Website</h3>
+                        <p>Learn German Naturally — Authentic street interviews, podcasts, and interactive exercises with real Germans in everyday situations.</p>
+                        <a href="https://www.easygerman.org" target="_blank" rel="noopener noreferrer" class="card-btn">Visit</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="reading-stories" style="--cat-color:#4f46e5;--cat-light:#eef2ff;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../Resources-images/lernedeutsch.png" alt="LernLaterne cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=lernlaterne.de&sz=64" alt="LernLaterne favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">A1-B1</span>
+                        <span class="card-badge category-badge">Reading & Stories</span>
+                        <h3>LernLaterne</h3>
+                        <p>Practice Through Stories — Short German stories and dialogues to strengthen listening, reading, and vocabulary from A1 to B1.</p>
+                        <a href="https://www.lernlaterne.de/" target="_blank" rel="noopener noreferrer" class="card-btn">Visit</a>
+                    </div>
+                </article>
+
+                <article class="resource-card reveal-item" data-reveal data-category="pronunciation" style="--cat-color:#059669;--cat-light:#d1fae5;">
+                    <div class="card-image-wrap">
+                        <img class="card-main-image" src="../images/YOUGLISH.png" alt="YouGlish cover image">
+                        <img class="card-favicon" src="https://www.google.com/s2/favicons?domain=youglish.com&sz=64" alt="YouGlish favicon" onerror="this.onerror=null;this.src='../images/Logo.png';">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-badge level-badge">All Levels</span>
+                        <span class="card-badge category-badge">Pronunciation</span>
+                        <h3>YouGlish German</h3>
+                        <p>Perfect Your Natural Pronunciation — Type any word and instantly hear how native speakers pronounce it in real YouTube videos.</p>
+                        <a href="https://youglish.com/german" target="_blank" rel="noopener noreferrer" class="card-btn">Visit</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="pdf-mini-card" data-reveal>
+                <div class="pdf-mini-text">
+                    <i class="fas fa-file-pdf"></i>
+                    <div>
+                        <h3>Resources PDF Guide</h3>
+                        <p>Prefer one downloadable sheet? Open or download the compact resources guide.</p>
+                    </div>
+                </div>
+                <div class="pdf-mini-actions">
+                    <a href="Resources.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-eye"></i> Open PDF</a>
+                    <a href="Resources.pdf" download class="btn btn-secondary"><i class="fas fa-download"></i> Download PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Deutsch Klub</h3>
+                    <p>Empowering students to excel in German language learning</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="about.html">About Team</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="test-banks.html">Quizzes</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScHW62ctySetNvA77ugYEDBZ3rTEvPl_3uHlcNOVpsYtgZROw/viewform?usp=header" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                Apply Now! — Members Form
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p class="contact-number">+201024012428</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61564110370482" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="mailto:stemasyutdeutschklub@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/company/stem-asyut-deutsch-klub/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VbBIB41ISTkC7JuaUb1q" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SADK - STEM Asyut Deutsch Klub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const resourceCards = document.querySelectorAll('.resource-card');
+            const revealItems = document.querySelectorAll('[data-reveal]');
+            const mainImages = document.querySelectorAll('.card-main-image');
+            const resourcesCount = document.getElementById('visible-resources-count');
+            const categoryBlocks = document.querySelectorAll('.category-block[data-filter]');
+
+            const updateVisibleCount = () => {
+                const visibleCards = Array.from(resourceCards).filter(card => !card.classList.contains('is-hidden')).length;
+                if (resourcesCount) {
+                    resourcesCount.textContent = visibleCards;
+                }
+            };
+
+            const applyFilter = (filter) => {
+                filterTabs.forEach(item => item.classList.toggle('active', item.dataset.filter === filter));
+
+                resourceCards.forEach(card => {
+                    const match = filter === 'all' || card.dataset.category === filter;
+                    card.classList.toggle('is-hidden', !match);
+                });
+
+                updateVisibleCount();
+            };
+
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    applyFilter(this.dataset.filter);
+                });
+            });
+
+            categoryBlocks.forEach(block => {
+                const filter = block.dataset.filter;
+                block.addEventListener('click', () => applyFilter(filter));
+                block.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        applyFilter(filter);
+                    }
+                });
+            });
+
+            mainImages.forEach(image => {
+                image.addEventListener('error', function () {
+                    this.classList.add('image-error');
+                });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transitionDelay = `${Math.min(index * 40, 240)}ms`;
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+            revealItems.forEach(item => observer.observe(item));
+            updateVisibleCount();
+        });
+    </script>
+    <script type="module" src="../js/main.js"></script>
+    <script src="../js/resources.js"></script>
+</body>
+</html>

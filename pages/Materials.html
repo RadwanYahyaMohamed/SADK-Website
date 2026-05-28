@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materials - Deutsch Klub</title>
+    <link rel="icon" type="image/png" href="../images/Logo.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/materials.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../images/Logo.png" alt="Deutsch Klub Logo" class="logo-img">
+                <span class="logo-text">STEM Asyut Deutsch Klub</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle active">Learn German ▼</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="Materials.html" class="dropdown-toggle-sub active">Materials</a></li>
+                        <li class="dropdown-item">
+                            <a href="#" class="dropdown-toggle-sub">G10 ▼</a>
+                            <ul class="dropdown-submenu">
+                                <li class="dropdown-item"><a href="curriculum/g10/semester1/lektionen.html">Semester 1</a></li>
+                                <li class="dropdown-item"><a href="curriculum/g10/semester2/lektionen.html">Semester 2</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="#" class="dropdown-toggle-sub">G11 ▼</a>
+                            <ul class="dropdown-submenu">
+                                <li class="dropdown-item"><a href="curriculum/g11/semester1/lektionen.html">Semester 1</a></li>
+                                <li class="dropdown-item"><a href="curriculum/g11/semester2/lektionen.html">Semester 2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+                <li class="nav-item"><a href="test-banks.html" class="nav-link">Quizzes</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <img src="../images/Bg.png" alt="Background" class="bg-image">
+            <div class="overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Study <span class="highlight">Materials</span></h1>
+            <p class="hero-subtitle">Your complete learning resources for German language mastery</p>
+        </div>
+    </section>
+
+    <!-- Materials Grid Section -->
+    <section class="materials-section">
+        <div class="materials-container">
+            
+            <!-- Grade 10 Card -->
+            <div class="grade-card grade-10">
+                <div class="grade-header">
+                    <div class="grade-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h2 class="grade-title">Grade 10</h2>
+                    <p class="grade-description">Foundation level - Building essential German skills</p>
+                </div>
+                <div class="semester-grid">
+                    <a href="curriculum/g10/semester1/lektionen.html" class="semester-card">
+                        <div class="semester-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3>Semester 1</h3>
+                        <p>Lektionen 1-3<br>Basic grammar & vocabulary</p>
+                        <span class="arrow-btn">→</span>
+                    </a>
+                    <a href="curriculum/g10/semester2/lektionen.html" class="semester-card">
+                        <div class="semester-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Semester 2</h3>
+                        <p>Lektionen 4-6<br>Intermediate concepts</p>
+                        <span class="arrow-btn">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Grade 11 Card -->
+            <div class="grade-card grade-11">
+                <div class="grade-header">
+                    <div class="grade-icon">
+                        <i class="fas fa-chalkboard-user"></i>
+                    </div>
+                    <h2 class="grade-title">Grade 11</h2>
+                    <p class="grade-description">Advanced level - Achieving fluency & confidence</p>
+                </div>
+                <div class="semester-grid">
+                    <a href="curriculum/g11/semester1/lektionen.html" class="semester-card">
+                        <div class="semester-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3>Semester 1</h3>
+                        <p>Advanced grammar<br>Complex sentence structures</p>
+                        <span class="arrow-btn">→</span>
+                    </a>
+                    <a href="curriculum/g11/semester2/lektionen.html" class="semester-card">
+                        <div class="semester-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Semester 2</h3>
+                        <p>Exam preparation<br>Speaking & writing practice</p>
+                        <span class="arrow-btn">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Extras Section
+            <div class="extras-card">
+                <div class="extras-header">
+                    <div class="extras-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2>Additional Resources</h2>
+                    <p>Complementary materials for all levels</p>
+                </div>
+                <div class="extras-grid">
+                    <a href="test-banks.html" class="extra-link">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Test Banks</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                    <a href="resources.html" class="extra-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>External Resources</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                    <a href="#" class="extra-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Study Guides</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                    <a href="#" class="extra-link">
+                        <i class="fas fa-history"></i>
+                        <span>Old Exams</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div> -->
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Deutsch Klub</h3>
+                    <p>Empowering students to excel in German language learning</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="about.html">About Team</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="test-banks.html">Quizzes</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScHW62ctySetNvA77ugYEDBZ3rTEvPl_3uHlcNOVpsYtgZROw/viewform?usp=header" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                Apply Now! — Members Form
+                            </a>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p class="contact-number">+201024012428</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61564110370482" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="mailto:stemasyutdeutschklub@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/company/stem-asyut-deutsch-klub/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VbBIB41ISTkC7JuaUb1q" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SADK - STEM Asyut Deutsch Klub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="../js/main.js"></script>
+    <script src="../js/materials.js"></script>
+</body>
+</html>

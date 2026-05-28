@@ -1,0 +1,276 @@
+/* ===== Materials Page Styles ===== */
+
+.materials-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    position: relative;
+}
+
+.materials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* Grade Cards */
+.grade-card {
+    background: white;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.grade-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.12);
+}
+
+.grade-header {
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.grade-10 .grade-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.grade-11 .grade-header {
+    background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
+}
+
+.grade-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2.5rem;
+    color: #fbbf24;
+}
+
+.grade-title {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.grade-description {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+}
+
+/* Semester Grid */
+.semester-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: #e2e8f0;
+}
+
+.semester-card {
+    background: white;
+    padding: 40px 30px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.semester-card:hover {
+    background: #f8fafc;
+    transform: scale(1.02);
+}
+
+.semester-card:hover .arrow-btn {
+    transform: translateX(5px);
+    color: #dc2626;
+}
+
+.semester-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.8rem;
+    color: white;
+}
+
+.semester-card h3 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.semester-card p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.arrow-btn {
+    display: inline-block;
+    font-size: 1.5rem;
+    color: #94a3b8;
+    transition: all 0.3s ease;
+}
+
+/* Extras Card */
+.extras-card {
+    background: white;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease;
+}
+
+.extras-card:hover {
+    transform: translateY(-5px);
+}
+
+.extras-header {
+    background: linear-gradient(135deg, #475569 0%, #334155 100%);
+    padding: 35px;
+    text-align: center;
+}
+
+.extras-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 2rem;
+    color: #fbbf24;
+}
+
+.extras-header h2 {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.extras-header p {
+    color: #cbd5e1;
+}
+
+.extras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: #e2e8f0;
+}
+
+.extra-link {
+    background: white;
+    padding: 25px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-decoration: none;
+    color: #1e293b;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.extra-link:hover {
+    background: #f8fafc;
+    color: #dc2626;
+}
+
+.extra-link i:first-child {
+    font-size: 1.3rem;
+    color: #3b82f6;
+}
+
+.extra-link:hover i:first-child {
+    color: #dc2626;
+}
+
+.extra-link i:last-child {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    transition: transform 0.3s ease;
+}
+
+.extra-link:hover i:last-child {
+    transform: translateX(5px);
+    color: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .materials-section {
+        padding: 40px 0;
+    }
+    
+    .grade-header {
+        padding: 30px 20px;
+    }
+    
+    .grade-title {
+        font-size: 1.8rem;
+    }
+    
+    .semester-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .semester-card {
+        padding: 30px 20px;
+    }
+    
+    .semester-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .extras-header {
+        padding: 25px 20px;
+    }
+    
+    .extras-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .extras-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .extra-link {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grade-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+    
+    .semester-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}

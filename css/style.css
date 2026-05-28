@@ -1,0 +1,811 @@
+/* ============================================
+   Deutsch Klub Website - Main Stylesheet
+   Colors: Black, Red, Gold (German Identity)
+   ============================================ */
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors extracted from logo and background images */
+    --color-black: #000000;
+    --color-red: #DE0000;
+    --color-gold: #FFCC00;
+    --color-dark-red: #B30000;
+    --color-dark-gold: #CC9900;
+    --color-light-beige: #EAE0D6;
+    --color-cream: #F5EFE9;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #666666;
+    --color-gray-shadow: #A0A0A0;
+    --color-white: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background-color: var(--color-cream);
+    overflow-x: hidden;
+    position: relative;
+    font-weight: 500;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-cream);
+    background-image: url('../images/Bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   Navigation Bar
+   ============================================ */
+
+.navbar {
+    background-color: var(--color-white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0.5rem 0;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 10px 0 14px;
+    display: grid;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: var(--color-black);
+    flex-shrink: 0;
+    min-width: 0;
+}
+
+.logo-img {
+    height: 48px;
+    width: auto;
+    flex-shrink: 0;
+}
+
+.logo-text {
+    color: var(--color-red);
+    line-height: 1.15;
+    white-space: nowrap;
+    font-size: clamp(0.78rem, 1.4vw, 1.05rem);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: clamp(0.15rem, 0.5vw, 0.45rem);
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    width: 100%;
+}
+
+.nav-menu .nav-auth-item {
+    flex-shrink: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: 600;
+    padding: 0.4rem clamp(0.35rem, 0.55vw, 0.65rem);
+    border-radius: 5px;
+    transition: var(--transition);
+    display: block;
+    font-size: clamp(0.78rem, 1.05vw, 0.92rem);
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    letter-spacing: -0.01em;
+}
+
+@media (min-width: 1200px) {
+    .nav-container {
+        padding: 0 18px 0 22px;
+        column-gap: 1.25rem;
+    }
+
+    .logo-img {
+        height: 54px;
+    }
+
+    .logo-text {
+        font-size: 1.05rem;
+    }
+
+    .nav-menu {
+        gap: 0.5rem;
+    }
+
+    .nav-link {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.94rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .nav-container {
+        padding: 0 24px 0 28px;
+    }
+
+    .nav-menu {
+        gap: 0.65rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.85rem;
+        font-size: 0.98rem;
+    }
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-red);
+    background-color: rgba(221, 0, 0, 0.1);
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-hover);
+    border-radius: 8px;
+    min-width: 250px;
+    padding: 0.5rem 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    margin-top: 0.5rem;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    position: relative;
+}
+
+.dropdown-toggle-sub {
+    padding: 0.75rem 1.5rem;
+    display: block;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.dropdown-toggle-sub:hover {
+    background-color: var(--color-light-gray);
+    color: var(--color-red);
+}
+
+.dropdown-submenu {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-hover);
+    border-radius: 8px;
+    min-width: 280px;
+    padding: 0.5rem 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: var(--transition);
+}
+
+.dropdown-item:hover .dropdown-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.dropdown-submenu li a {
+    padding: 0.75rem 1.5rem;
+    display: block;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.dropdown-submenu li a:hover {
+    background-color: var(--color-light-gray);
+    color: var(--color-red);
+    padding-left: 2rem;
+}
+
+/* Hamburger Menu (Mobile) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-black);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+
+.hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;   
+    inset: 0;
+    z-index: 0;
+}
+.bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3); 
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    animation: fadeInUp 1s ease-out;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.185);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(1px);
+}
+
+.hero-logo {
+    margin-bottom: -1rem;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.hero-logo-img {
+    height: 140px;
+    width: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--color-black);
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.highlight {
+    color: var(--color-red);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--color-black);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.hero-message {
+    font-size: 1.1rem;
+    color: var(--color-gray);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.gold-text {
+    color: var(--color-dark-gold);
+    font-weight: bold;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.875rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-block;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--color-red);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-dark-red);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-red);
+    border-color: var(--color-red);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-red);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+.btn-auth {
+    background: linear-gradient(135deg, var(--color-gold), var(--color-dark-gold));
+    color: var(--color-black);
+    border: 2px solid var(--color-dark-gold);
+}
+
+.btn-auth:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    background: var(--color-gold);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+.scroll-arrow {
+    width: 30px;
+    height: 30px;
+    border-right: 3px solid var(--color-red);
+    border-bottom: 3px solid var(--color-red);
+    transform: rotate(45deg);
+}
+
+/* ============================================
+   Features Section
+   ============================================ */
+
+.features {
+    padding: 5rem 0;
+    background-color: var(--color-light-gray);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--color-black);
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    backdrop-filter: blur(5px);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    color: var(--color-red);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.feature-card p {
+    color: #2a2a2a;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+.footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 3rem 0 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-section a {
+    color: var(--color-white);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--color-gold);
+    padding-left: 6px;
+}
+
+.contact-number {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 0.5rem;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-6px) scale(1.1);
+    background-color: var(--color-gold);
+    color: black;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-gray);
+}
+
+
+/* ============================================
+   Page Content Styles (Shared)
+   ============================================ */
+
+.page-header {
+    background: linear-gradient(135deg, var(--color-red) 0%, var(--color-dark-red) 100%);
+    color: var(--color-white);
+    padding: 2rem 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.page-content {
+    padding: 3rem 0;
+    min-height: 60vh;
+    position: relative;
+    z-index: 1;
+}
+
+.content-container {
+    background-color: rgba(255, 255, 255, 0.98);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    margin: 0rem 0;
+    backdrop-filter: blur(10px);
+}
+
+.content-container h2,
+.content-container h3,
+.content-container h4 {
+    color: var(--color-black);
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.content-container p {
+    color: #1a1a1a;
+    font-weight: 500;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: var(--color-white);
+        width: 100%;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+        padding: 2rem 0;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background-color: var(--color-light-gray);
+        margin-top: 0;
+        border-radius: 0;
+    }
+
+    .dropdown-submenu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background-color: rgba(0, 0, 0, 0.05);
+        margin-left: 1rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+
+
+/* أضف هذا في نهاية ملف style.css */
+
+/* إصلاح لـ background للصفحات الأخرى */
+.page-content {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(245, 239, 233, 0.95);
+    margin-top: 0rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 0rem;
+}
+
+/* إصلاح لـ hero في الصفحات الأخرى */
+.hero .hero-content {
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+/* إصلاح لـ navbar dropdown links */
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--color-light-gray);
+    color: var(--color-red);
+}
+
+/* إصلاح لـ active link */
+.nav-link.active {
+    color: var(--color-red) !important;
+    background-color: rgba(221, 0, 0, 0.1) !important;
+}

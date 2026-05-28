@@ -1,0 +1,598 @@
+/* ===== Lektionen Page Styles ===== */
+
+.materials-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.materials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Tab Navigation */
+.tab-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+    background: white;
+    padding: 15px;
+    border-radius: 50px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    justify-content: center;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background: transparent;
+    border: none;
+    border-radius: 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn i {
+    font-size: 1.1rem;
+}
+
+.tab-btn:hover {
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
+    box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.content-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.content-header h2 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.content-header h2 i {
+    color: #dc2626;
+    margin-right: 15px;
+}
+
+.content-header p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+/* Section Subtitle */
+.section-subtitle {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin: 30px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #dc2626;
+    display: inline-block;
+}
+
+.section-subtitle i {
+    color: #dc2626;
+    margin-right: 10px;
+}
+
+/* Files Grid */
+.files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.file-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.file-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    border-color: #dc2626;
+}
+
+.file-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2rem;
+    color: #dc2626;
+}
+
+.file-image {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    margin: 0 auto 22px;
+    border-radius: 20px;
+    display: block;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease, border-radius 0.35s ease;
+}
+
+.file-card h3 {
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.file-card p {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+.file-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.btn-preview, .btn-download {
+    padding: 8px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-preview {
+    background: #f1f5f9;
+    color: #3b82f6;
+}
+
+.btn-preview:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-download {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-download:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+}
+
+/* Placeholder Card */
+.placeholder-card {
+    opacity: 0.7;
+    background: #f8fafc;
+}
+
+.placeholder-card .btn-preview {
+    background: #e2e8f0;
+    color: #94a3b8;
+    cursor: default;
+}
+
+.placeholder-card .btn-preview:hover {
+    background: #e2e8f0;
+    color: #94a3b8;
+    transform: none;
+}
+
+/* Exam Section */
+.exam-section {
+    margin-bottom: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .materials-section {
+        padding: 40px 0;
+    }
+    
+    .tab-navigation {
+        border-radius: 20px;
+        padding: 10px;
+    }
+    
+    .tab-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .tab-btn span {
+        display: none;
+    }
+    
+    .tab-btn i {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    
+    .content-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .files-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-subtitle {
+        font-size: 1.2rem;
+    }
+}
+
+/* Coming Soon Section */
+.coming-soon {
+    text-align: center;
+    padding: 80px 40px;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    margin: 20px 0;
+}
+
+.coming-soon-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2.5rem;
+    color: #d97706;
+}
+
+.coming-soon h3 {
+    font-size: 1.8rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.coming-soon p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+/* Folder Embed */
+.folder-embed {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.folder-embed iframe {
+    display: block;
+}
+
+/* Deutsch.com Card Styling */
+.deutschcom-card {
+    border-color: #dbeafe;
+}
+
+.deutschcom-card:hover {
+    border-color: #3b82f6;
+}
+
+.deutschcom-card .file-icon {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: #3b82f6;
+}
+
+.deutschcom-card .file-image {
+    filter: drop-shadow(0 2px 8px rgba(59, 130, 246, 0.15));
+    transition: transform 0.3s ease;
+}
+
+.deutschcom-card:hover .file-image {
+    transform: scale(1.05);
+}
+
+.deutschcom-card .btn-download {
+    background: #3b82f6;
+    color: white;
+}
+
+.deutschcom-card .btn-download:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+
+/* Test Bank Cards Styling */
+.testbank-card {
+    background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%);
+    border: 1px solid #c7d2fe;
+}
+
+.testbank-card:hover {
+    border-color: #6366f1;
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.16);
+}
+
+.testbank-card h3 {
+    color: #3730a3;
+}
+
+.testbank-card p {
+    color: #4338ca;
+}
+
+.testbank-card .btn-preview {
+    background: #eef2ff;
+    color: #4338ca;
+}
+
+.testbank-card .btn-preview:hover {
+    background: #6366f1;
+    color: white;
+}
+
+.testbank-card .btn-download {
+    background: #4338ca;
+}
+
+.testbank-card .btn-download:hover {
+    background: #3730a3;
+}
+
+.oldexam-card {
+    background: linear-gradient(135deg, #0b1020 0%, #5b21b6 100%);
+    border: 1px solid rgba(255,215,0,0.12);
+    box-shadow: 0 25px 60px rgba(91,33,182,0.14);
+    color: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.oldexam-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 50px 110px rgba(91,33,182,0.22);
+    border-color: rgba(255,215,0,0.32);
+}
+
+.oldexam-card .file-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 10px 30px rgba(91,33,182,0.18));
+    transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+}
+
+.oldexam-card:hover .file-image {
+    transform: translateY(-12px) scale(1.12);
+}
+
+.oldexam-card h3 {
+    color: #fff;
+}
+
+.oldexam-card p {
+    color: rgba(255,255,255,0.9);
+}
+
+.oldexam-card .btn-preview {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+.oldexam-card .btn-preview:hover {
+    background: rgba(255,255,255,0.24);
+}
+
+.oldexam-card .btn-download {
+    background: #ffd54f;
+    color: #111;
+}
+
+.oldexam-card .btn-download:hover {
+    background: #ffca28;
+    transform: translateY(-2px);
+}
+
+/* Apply same image hover effects as Deutsch.com tab to all file cards */
+.file-card .file-image {
+    filter: drop-shadow(0 4px 14px rgba(2,6,23,0.06));
+}
+.file-card:hover .file-image {
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: 0 30px 50px rgba(2, 6, 23, 0.12);
+}
+
+.finalrevision-grid {
+    justify-items: center;
+    margin-top: 30px;
+}
+
+.finalrevision-card {
+    max-width: 600px;
+    width: min(560px, 100%);
+    margin: 40px auto;
+    padding: 35px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #0f172a, #2563eb);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    box-shadow: 0 30px 70px rgba(82, 80, 91, 0.836);
+    color: #f8fafc;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.finalrevision-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 35%), radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 20%);
+    pointer-events: none;
+}
+
+.finalrevision-card .file-image {
+    width: 220px;
+    height: 220px;
+    border-radius: 26px;
+    margin-bottom: 22px;
+    transform: translateZ(0);
+}
+
+.finalrevision-card h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #eff6ff;
+}
+
+.finalrevision-card p {
+    color: rgba(226, 232, 240, 0.92);
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.finalrevision-card .btn-preview,
+.finalrevision-card .btn-download {
+    border-radius: 999px;
+    padding: 12px 26px;
+    font-size: 0.95rem;
+}
+
+.finalrevision-card .btn-preview {
+    background: rgba(255,255,255,0.18);
+    color: #e0f2fe;
+}
+
+.finalrevision-card .btn-preview:hover {
+    background: rgba(255,255,255,0.32);
+    color: #ffffff;
+}
+
+.finalrevision-card .btn-download {
+    background: #facc15;
+    color: #1f2937;
+}
+
+.finalrevision-card .btn-download:hover {
+    background: #eab308;
+    transform: translateY(-2px);
+}
+
+.finalrevision-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 40px 90px rgba(37, 99, 235, 0.28);
+}
+
+.finalrevision-card:hover .file-image {
+    transform: translateY(-12px) scale(1.12);
+}
+
+/* Other Materials Card Styling */
+.other-section {
+    margin-top: 50px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.other-section:first-child {
+    margin-top: 0;
+    border-top: none;
+    padding-top: 0;
+}
+
+.other-card {
+    background: linear-gradient(135deg, #fdf4ff 0%, #eef2ff 100%);
+    border: 1px solid #c4b5fd;
+}
+
+.other-card:hover {
+    border-color: #7c3aed;
+    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.12);
+}
+
+.other-card .file-image {
+    width: 110px;
+    height: 110px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+}
+
+.other-card h3 {
+    color: #5b21b6;
+}
+
+.other-card p {
+    color: #6d28d9;
+}
+
+.other-card .btn-preview {
+    background: #ede9fe;
+    color: #7c3aed;
+}
+
+.other-card .btn-preview:hover {
+    background: #7c3aed;
+    color: white;
+}
+
+.other-card .btn-download {
+    background: #8b5cf6;
+}
+
+.other-card .btn-download:hover {
+    background: #7c3aed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .coming-soon {
+        padding: 50px 20px;
+    }
+    
+    .coming-soon h3 {
+        font-size: 1.4rem;
+    }
+    
+    .folder-embed iframe {
+        height: 400px;
+    }
+}
