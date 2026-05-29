@@ -765,9 +765,9 @@ body::before {
 
 
 
-/* أضف هذا في نهاية ملف style.css */
+/* Add at end of style.css */
 
-/* إصلاح لـ background للصفحات الأخرى */
+/* Background fix for inner pages */
 .page-content {
     position: relative;
     z-index: 2;
@@ -778,7 +778,7 @@ body::before {
     padding: 0rem;
 }
 
-/* إصلاح لـ hero في الصفحات الأخرى */
+/* Hero fix for inner pages */
 .hero .hero-content {
     padding: 2rem;
     background-color: rgba(255, 255, 255, 0.5);
@@ -789,7 +789,7 @@ body::before {
     max-width: 800px;
 }
 
-/* إصلاح لـ navbar dropdown links */
+/* Navbar dropdown links */
 .dropdown-menu a {
     display: block;
     padding: 0.75rem 1.5rem;
@@ -804,7 +804,7 @@ body::before {
     color: var(--color-red);
 }
 
-/* إصلاح لـ active link */
+/* Active nav link */
 .nav-link.active {
     color: var(--color-red) !important;
     background-color: rgba(221, 0, 0, 0.1) !important;
