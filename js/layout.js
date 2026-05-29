@@ -6,57 +6,32 @@ import "./appwrite.js";
 import { injectAuthNav } from "./auth-nav.js";
 import "./main.js";
 
-/**
- * @returns {{ toRoot: string, toPages: string, images: string }}
- */
-export function getLayoutPaths() {
-    const pathname = window.location.pathname.replace(/\\/g, "/");
-    let pageDepth = 0;
-
-    if (pathname.includes("/pages/")) {
-        const afterPages = pathname.split("/pages/")[1] || "";
-        pageDepth = afterPages.split("/").filter(Boolean).length;
-    }
-
-    const toRoot = pageDepth === 0 ? "" : "../".repeat(pageDepth);
-    const toPages = pageDepth === 0 ? "pages/" : pageDepth === 1 ? "" : "../".repeat(pageDepth - 1);
-
-    return {
-        toRoot,
-        toPages,
-        images: `${toRoot}images/`,
-    };
-}
-
-function buildNavbarHTML(paths) {
-    const { toRoot, toPages, images } = paths;
-    const p = toPages;
-
+function buildNavbarHTML() {
     return `
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="${images}Logo.png" alt="Deutsch Klub Logo" class="logo-img">
+                <img src="/images/Logo.png" alt="Deutsch Klub Logo" class="logo-img">
                 <span class="logo-text">STEM Asyut Deutsch Klub</span>
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
-                    <a href="${toRoot}index.html" class="nav-link" data-nav="home">Home</a>
+                    <a href="/index.html" class="nav-link" data-nav="home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="${p}about.html" class="nav-link" data-nav="about">About Us</a>
+                    <a href="/pages/about.html" class="nav-link" data-nav="about">About Us</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-nav="learn">Learn German ▼</a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a class="dropdown-toggle-sub" href="${p}Materials.html" data-nav="materials">Materials</a></li>
+                        <li class="dropdown-item"><a class="dropdown-toggle-sub" href="/pages/Materials.html" data-nav="materials">Materials</a></li>
                         <li class="dropdown-item">
                             <a href="#" class="dropdown-toggle-sub">G10 ▼</a>
                             <ul class="dropdown-submenu">
                                 <li class="dropdown-item">
-                                    <a href="${p}curriculum/g10/semester1/lektionen.html" class="dropdown-toggle-sub" data-nav="g10s1">Semester 1</a>
+                                    <a href="/pages/curriculum/g10/semester1/lektionen.html" class="dropdown-toggle-sub" data-nav="g10s1">Semester 1</a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a href="${p}curriculum/g10/semester2/lektionen.html" class="dropdown-toggle-sub" data-nav="g10s2">Semester 2</a>
+                                    <a href="/pages/curriculum/g10/semester2/lektionen.html" class="dropdown-toggle-sub" data-nav="g10s2">Semester 2</a>
                                 </li>
                             </ul>
                         </li>
@@ -64,23 +39,23 @@ function buildNavbarHTML(paths) {
                             <a href="#" class="dropdown-toggle-sub">G11 ▼</a>
                             <ul class="dropdown-submenu">
                                 <li class="dropdown-item">
-                                    <a href="${p}curriculum/g11/semester1/lektionen.html" class="dropdown-toggle-sub" data-nav="g11s1">Semester 1</a>
+                                    <a href="/pages/curriculum/g11/semester1/lektionen.html" class="dropdown-toggle-sub" data-nav="g11s1">Semester 1</a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a href="${p}curriculum/g11/semester2/lektionen.html" class="dropdown-toggle-sub" data-nav="g11s2">Semester 2</a>
+                                    <a href="/pages/curriculum/g11/semester2/lektionen.html" class="dropdown-toggle-sub" data-nav="g11s2">Semester 2</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="${p}resources.html" class="nav-link" data-nav="resources">Resources</a>
+                    <a href="/pages/resources.html" class="nav-link" data-nav="resources">Resources</a>
                 </li>
                 <li class="nav-item">
-                    <a href="${p}test-banks.html" class="nav-link" data-nav="quizzes">Quizzes</a>
+                    <a href="/pages/test-banks.html" class="nav-link" data-nav="quizzes">Quizzes</a>
                 </li>
                 <li class="nav-item">
-                    <a href="${p}contact.html" class="nav-link" data-nav="contact">Contact Us</a>
+                    <a href="/pages/contact.html" class="nav-link" data-nav="contact">Contact Us</a>
                 </li>
             </ul>
             <div class="hamburger" id="hamburger">
@@ -91,10 +66,7 @@ function buildNavbarHTML(paths) {
         </div>`;
 }
 
-function buildFooterHTML(paths) {
-    const { toRoot, toPages } = paths;
-    const homeHref = toRoot ? `${toRoot}index.html` : "index.html";
-
+function buildFooterHTML() {
     return `
     <div class="container">
         <div class="footer-content">
@@ -105,11 +77,11 @@ function buildFooterHTML(paths) {
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="${homeHref}">Home</a></li>
-                    <li><a href="${toPages}about.html">About Team</a></li>
-                    <li><a href="${toPages}resources.html">Resources</a></li>
-                    <li><a href="${toPages}test-banks.html">Quizzes</a></li>
-                    <li><a href="${toPages}contact.html">Contact Us</a></li>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/pages/about.html">About Team</a></li>
+                    <li><a href="/pages/resources.html">Resources</a></li>
+                    <li><a href="/pages/test-banks.html">Quizzes</a></li>
+                    <li><a href="/pages/contact.html">Contact Us</a></li>
                     <li>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLScHW62ctySetNvA77ugYEDBZ3rTEvPl_3uHlcNOVpsYtgZROw/viewform?usp=header"
                            target="_blank"
@@ -232,16 +204,15 @@ function initSmoothScroll() {
 }
 
 export async function injectLayout() {
-    const paths = getLayoutPaths();
     const navbar = document.querySelector(".navbar");
     const footer = document.querySelector(".footer");
 
     if (navbar) {
-        navbar.innerHTML = buildNavbarHTML(paths);
+        navbar.innerHTML = buildNavbarHTML();
     }
 
     if (footer) {
-        footer.innerHTML = buildFooterHTML(paths);
+        footer.innerHTML = buildFooterHTML();
     }
 
     await injectAuthNav();
