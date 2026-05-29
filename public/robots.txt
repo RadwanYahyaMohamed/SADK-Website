@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# صفحات خاصة - مش محتاج جوجل يشوفها
+Disallow: /pages/login.html
+Disallow: /pages/signup.html
+Disallow: /pages/account.html
+
+# مكان الـ Sitemap
+Sitemap: https://sadk.appwrite.network/sitemap.xml
