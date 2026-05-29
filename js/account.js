@@ -13,6 +13,7 @@ import { Query } from "appwrite";
 import { databases } from "./appwrite.js";
 import { AUTH_CONFIG } from "./auth-config.js";
 import { LEVELS_DB } from "./questions.js";
+import { parseStringList } from "./challenge.js";
 
 const CHALLENGE_COLLECTION_ID = "challenge_stats";
 
@@ -275,8 +276,8 @@ async function loadChallengeStats(userId) {
         }
 
         const doc = result.documents[0];
-        const completedExams = doc.completedExams || [];
-        const completedLevels = doc.completedLevels || [];
+        const completedExams = parseStringList(doc.completedExams);
+        const completedLevels = parseStringList(doc.completedLevels);
         const totalExams = Object.keys(LEVELS_DB).length * 10;
         const highestLevel = getHighestLevel(completedLevels);
 

@@ -1,6 +1,8 @@
 import { ID, Query, Permission, Role } from "appwrite";
-import { databases, account } from "./appwrite.js";
-import { requireVerifiedAuth } from "./auth-guard.js";
+import { databases } from "./appwrite.js";
+import { getCurrentUser } from "./auth-service.js";
+import { authPageUrl } from "./auth-utils.js";
+import { isEmailVerified } from "./auth-validation.js";
 import { AUTH_CONFIG } from "./auth-config.js";
 import { LEVELS_DB, EXAMS_POOL } from "./questions.js";
 
@@ -17,6 +19,7 @@ let statsDocId = null;
 let activeLevel = null;
 let activeExam = null;
 let activeQuestion = 0;
+let questionLocked = false;
 
 const loadingState = () => document.getElementById("loadingState");
 const mainGrid = () => document.getElementById("mainGrid");
@@ -57,6 +60,12 @@ function isExamDone(levelId, examIndex, data) {
     return (data.completedExams || []).includes(examId(levelId, examIndex));
 }
 
+/** Exam 1 is open; each next exam unlocks after the previous is completed. */
+function isExamLocked(levelId, examIndex, data) {
+    if (examIndex === 0) return false;
+    return !isExamDone(levelId, examIndex - 1, data);
+}
+
 function statsPermissions(userId) {
     const owner = Role.user(userId);
     return [
@@ -66,6 +75,36 @@ function statsPermissions(userId) {
     ];
 }
 
+/**
+ * Appwrite "String" attributes store lists as JSON text.
+ * Also accepts native String[] if configured that way in Console.
+ */
+export function parseStringList(value) {
+    if (Array.isArray(value)) {
+        return value.filter((item) => typeof item === "string");
+    }
+
+    if (typeof value === "string" && value.trim()) {
+        try {
+            const parsed = JSON.parse(value);
+            if (Array.isArray(parsed)) {
+                return parsed.filter((item) => typeof item === "string");
+            }
+        } catch {
+            return value
+                .split(",")
+                .map((item) => item.trim())
+                .filter(Boolean);
+        }
+    }
+
+    return [];
+}
+
+export function serializeStringList(list) {
+    return JSON.stringify(Array.isArray(list) ? list : []);
+}
+
 function docToStats(doc) {
     return {
         $id: doc.$id,
@@ -73,8 +112,8 @@ function docToStats(doc) {
         xp: doc.xp ?? 0,
         currentStreak: doc.currentStreak ?? 0,
         lastActiveDate: doc.lastActiveDate ?? getToday(),
-        completedExams: doc.completedExams ?? [],
-        completedLevels: doc.completedLevels ?? [],
+        completedExams: parseStringList(doc.completedExams),
+        completedLevels: parseStringList(doc.completedLevels),
     };
 }
 
@@ -99,8 +138,8 @@ async function getOrCreateStats(userId) {
             xp: 0,
             currentStreak: 0,
             lastActiveDate: today,
-            completedExams: [],
-            completedLevels: [],
+            completedExams: serializeStringList([]),
+            completedLevels: serializeStringList([]),
         },
         permissions: statsPermissions(userId),
     });
@@ -132,8 +171,8 @@ async function saveStats(data) {
             xp: data.xp,
             currentStreak: data.currentStreak,
             lastActiveDate: data.lastActiveDate,
-            completedExams: data.completedExams,
-            completedLevels: data.completedLevels,
+            completedExams: serializeStringList(data.completedExams),
+            completedLevels: serializeStringList(data.completedLevels),
         },
     });
 
@@ -239,18 +278,28 @@ function renderExams(levelId, data) {
         </button>
         <div class="exams-header">
             <h2>${escapeHtml(level.name)}</h2>
-            <p>${doneCount} of ${EXAMS_PER_LEVEL} exams completed</p>
+            <p>${doneCount} of ${EXAMS_PER_LEVEL} exams completed · complete exams in order</p>
         </div>
         <div class="exam-grid">
             ${Array.from({ length: EXAMS_PER_LEVEL }, (_, i) => {
                 const done = isExamDone(levelId, i, data);
+                const locked = !done && isExamLocked(levelId, i, data);
+                let stateClass = "";
+                if (done) stateClass = "done";
+                else if (locked) stateClass = "locked";
+
+                let badge = '<span class="badge-pending">Start</span>';
+                if (done) {
+                    badge = '<span class="badge-completed">Completed</span>';
+                } else if (locked) {
+                    badge = `<span class="badge-pending">Locked — finish Exam ${i} first</span>`;
+                }
+
                 return `
-                    <div class="exam-card ${done ? "done" : ""}" data-exam="${i}">
+                    <div class="exam-card ${stateClass}" data-exam="${i}">
                         <h4>Exam ${i + 1}</h4>
                         <p>${QUESTIONS_PER_EXAM} questions · +50 XP bonus</p>
-                        ${done
-                            ? '<span class="badge-completed">Completed</span>'
-                            : '<span class="badge-pending">Start</span>'}
+                        ${badge}
                     </div>
                 `;
             }).join("")}
@@ -261,7 +310,7 @@ function renderExams(levelId, data) {
         renderLevels(stats);
     });
 
-    container.querySelectorAll(".exam-card:not(.done)").forEach((card) => {
+    container.querySelectorAll(".exam-card:not(.done):not(.locked)").forEach((card) => {
         card.addEventListener("click", () => {
             const examIndex = Number(card.getAttribute("data-exam"));
             startQuiz(levelId, examIndex, stats);
@@ -270,9 +319,12 @@ function renderExams(levelId, data) {
 }
 
 function startQuiz(levelId, examIndex, data) {
+    if (isExamLocked(levelId, examIndex, data)) return;
+
     activeLevel = levelId;
     activeExam = examIndex;
     activeQuestion = 0;
+    questionLocked = false;
     stats = data;
 
     const modal = quizModal();
@@ -295,6 +347,7 @@ function closeQuizModal() {
     activeLevel = null;
     activeExam = null;
     activeQuestion = 0;
+    questionLocked = false;
 }
 
 function renderQuestion() {
@@ -304,6 +357,7 @@ function renderQuestion() {
         return;
     }
 
+    questionLocked = false;
     const q = questions[activeQuestion];
     const tagEl = document.getElementById("quizTag");
     const progressEl = document.getElementById("quizProgress");
@@ -339,17 +393,26 @@ function renderQuestion() {
 }
 
 async function handleAnswer(selectedIdx, correctIdx, optionBtn) {
+    if (questionLocked) return;
+    questionLocked = true;
+
+    const questions = EXAMS_POOL[activeLevel]?.[activeExam];
+    const q = questions?.[activeQuestion];
+    if (!q) return;
+
     const feedbackEl = document.getElementById("quizFeedback");
     const optionsEl = document.getElementById("quizOptions");
     const allButtons = optionsEl?.querySelectorAll(".quiz-option") ?? [];
 
+    allButtons.forEach((btn) => {
+        btn.disabled = true;
+    });
+
+    const advanceDelay = 1600;
+
     if (selectedIdx === correctIdx) {
         stats.xp += 10;
         renderStatsBar(stats);
-
-        allButtons.forEach((btn) => {
-            btn.disabled = true;
-        });
         optionBtn.classList.add("correct");
 
         if (feedbackEl) {
@@ -357,30 +420,36 @@ async function handleAnswer(selectedIdx, correctIdx, optionBtn) {
             feedbackEl.className = "success";
             feedbackEl.classList.remove("hidden");
         }
-
-        activeQuestion += 1;
-
-        setTimeout(() => {
-            const questions = EXAMS_POOL[activeLevel]?.[activeExam];
-            if (activeQuestion < (questions?.length ?? 0)) {
-                renderQuestion();
-            } else {
-                completeExam();
-            }
-        }, 1200);
     } else {
         stats.xp = Math.max(0, stats.xp - 5);
         renderStatsBar(stats);
-
         optionBtn.classList.add("wrong");
-        optionBtn.style.display = "none";
 
+        allButtons.forEach((btn) => {
+            const idx = Number(btn.getAttribute("data-idx"));
+            if (idx === correctIdx) {
+                btn.classList.add("correct");
+            }
+        });
+
+        const correctAnswer = q.o[correctIdx];
         if (feedbackEl) {
-            feedbackEl.textContent = "Falsch! −5 XP — try again";
+            feedbackEl.innerHTML =
+                `Falsch! −5 XP<br><span class="quiz-correct-reveal">Richtige Antwort: <strong>${escapeHtml(correctAnswer)}</strong></span>`;
             feedbackEl.className = "error";
             feedbackEl.classList.remove("hidden");
         }
     }
+
+    activeQuestion += 1;
+
+    setTimeout(() => {
+        if (activeQuestion < (questions?.length ?? 0)) {
+            renderQuestion();
+        } else {
+            completeExam();
+        }
+    }, advanceDelay);
 }
 
 async function completeExam() {
@@ -523,9 +592,50 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+function showAuthGateMessage(title, message, redirectUrl, delayMs = 3500, redirectLabel = "Redirecting…") {
+    const loading = loadingState();
+    if (loading) {
+        loading.classList.add("challenge-auth-gate");
+        loading.innerHTML = `
+            <i class="fas fa-lock"></i>
+            <p class="auth-gate-title">${escapeHtml(title)}</p>
+            <p class="auth-gate-message">${escapeHtml(message)}</p>
+            <p class="auth-gate-redirect">${escapeHtml(redirectLabel)}</p>
+            <a href="${redirectUrl}" class="btn btn-primary auth-gate-btn">Continue</a>
+        `;
+    }
+
+    setTimeout(() => {
+        window.location.href = redirectUrl;
+    }, delayMs);
+}
+
 async function initChallenge() {
-    const user = await requireVerifiedAuth();
-    if (!user) return;
+    let user;
+
+    try {
+        user = await getCurrentUser();
+    } catch {
+        showAuthGateMessage(
+            "Login Required",
+            "You must sign in before accessing the Daily Challenge. Please log in to track your XP and streak.",
+            authPageUrl("login.html"),
+            3500,
+            "Redirecting you to sign in…"
+        );
+        return;
+    }
+
+    if (!isEmailVerified(user)) {
+        showAuthGateMessage(
+            "Email Verification Required",
+            "Please verify your email before using the Daily Challenge.",
+            authPageUrl("verify-email.html"),
+            3500,
+            "Redirecting you to email verification…"
+        );
+        return;
+    }
 
     currentUser = user;
 
@@ -551,8 +661,12 @@ async function initChallenge() {
         if (loading) {
             loading.innerHTML = `
                 <i class="fas fa-exclamation-triangle"></i>
-                <p>Could not load challenge data. Make sure the <strong>challenge_stats</strong> collection exists in Appwrite.</p>
+                <p>Could not load challenge data. Check the <strong>challenge_stats</strong> collection in Appwrite.</p>
                 <p style="font-size:0.9rem;margin-top:0.5rem;">${escapeHtml(error?.message || "Unknown error")}</p>
+                <p style="font-size:0.85rem;margin-top:0.75rem;color:#666;">
+                    <strong>completedExams</strong> and <strong>completedLevels</strong> must be type
+                    <strong>String</strong> (size 1000 and 100) — not String Array. The app stores them as JSON text.
+                </p>
             `;
         }
     }

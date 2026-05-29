@@ -204,6 +204,12 @@
     cursor: default;
 }
 
+.exam-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 .exam-card h4 {
     color: var(--color-red);
     margin-bottom: 0.5rem;
@@ -412,6 +418,54 @@
 #quizFeedback.error {
     background: #fee2e2;
     color: #991b1b;
+}
+
+.quiz-correct-reveal {
+    display: block;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+.quiz-correct-reveal strong {
+    color: #166534;
+}
+
+/* Login gate */
+.challenge-auth-gate {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.challenge-auth-gate i {
+    font-size: 2.5rem;
+    color: var(--color-red);
+}
+
+.auth-gate-title {
+    font-size: 1.35rem;
+    font-weight: bold;
+    color: var(--color-black);
+}
+
+.auth-gate-message {
+    color: var(--color-gray);
+    line-height: 1.6;
+}
+
+.auth-gate-redirect {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    font-style: italic;
+}
+
+.auth-gate-btn {
+    margin-top: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
 }
 
 /* Leaderboard */
