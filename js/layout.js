@@ -10,7 +10,7 @@ function buildNavbarHTML() {
     return `
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="/images/Logo.png" alt="Deutsch Klub Logo" class="logo-img">
+                <img src="/Logo.png" alt="Deutsch Klub Logo" class="logo-img">
                 <span class="logo-text">STEM Asyut Deutsch Klub</span>
             </div>
             <ul class="nav-menu" id="navMenu">
