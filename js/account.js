@@ -43,13 +43,13 @@ function renderAvatar(avatarFileId, name) {
 
     if (url) {
         avatarImg.src = url;
-        avatarImg.hidden = false;
-        avatarPlaceholder.hidden = true;
+        avatarImg.style.display = "block";
+        avatarPlaceholder.style.display = "none";
         return;
     }
 
-    avatarImg.hidden = true;
-    avatarPlaceholder.hidden = false;
+    avatarImg.style.display = "none";
+    avatarPlaceholder.style.display = "flex";
     avatarPlaceholder.innerHTML = `<span>${getInitials(name)}</span>`;
 }
 
