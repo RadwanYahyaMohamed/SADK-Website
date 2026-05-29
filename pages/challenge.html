@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Challenge - STEM Asyut Deutsch Klub</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/challenge.css">
+    <link rel="icon" type="image/png" href="/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar"></nav>
+
+    <section class="hero">
+        <div class="hero-background">
+            <img src="/images/Bg.png" alt="Background" class="bg-image">
+            <div class="overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Daily <span class="highlight">Challenge</span></h1>
+            <p class="hero-subtitle">Test your German every day — build your streak!</p>
+            <div id="statsBar" class="challenge-stats-bar hidden">
+                <div class="stat-badge">
+                    <i class="fas fa-fire"></i>
+                    <span id="streakCount">0</span> Day Streak
+                </div>
+                <div class="stat-badge gold">
+                    <i class="fas fa-star"></i>
+                    <span id="xpCount">0</span> XP
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-content">
+        <div id="challengeApp">
+            <div id="loadingState" class="challenge-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading your challenge data...</p>
+            </div>
+
+            <div id="mainGrid" class="challenge-grid hidden">
+                <div class="challenge-main">
+                    <div id="challengeSuccess" class="challenge-success-banner hidden" role="status"></div>
+                    <div id="levelsView"></div>
+                    <div id="examsView" class="hidden"></div>
+                </div>
+
+                <div class="challenge-sidebar">
+                    <div class="content-container">
+                        <h3><i class="fas fa-trophy"></i> Leaderboard</h3>
+                        <div id="leaderboardList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="quizModal" class="challenge-modal-overlay hidden">
+        <div class="challenge-modal">
+            <div class="challenge-modal-header">
+                <span id="quizTag">EXAM 1</span>
+                <span id="quizProgress">Question 1/5</span>
+                <button type="button" id="closeQuiz" aria-label="Close quiz"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="challenge-modal-body">
+                <h2 id="quizQuestion"></h2>
+                <div id="quizOptions"></div>
+                <div id="quizFeedback" class="hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer"></footer>
+
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/challenge.js"></script>
+</body>
+</html>

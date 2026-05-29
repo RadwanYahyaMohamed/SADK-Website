@@ -55,6 +55,9 @@ function buildNavbarHTML() {
                     <a href="/pages/test-banks.html" class="nav-link" data-nav="quizzes">Quizzes</a>
                 </li>
                 <li class="nav-item">
+                    <a href="/pages/challenge.html" class="nav-link" data-nav="challenge">Challenge 🔥</a>
+                </li>
+                <li class="nav-item">
                     <a href="/pages/contact.html" class="nav-link" data-nav="contact">Contact Us</a>
                 </li>
             </ul>
@@ -163,6 +166,11 @@ function setActiveNavLinks() {
     ) {
         const learnToggle = document.querySelector(".dropdown-toggle[data-nav='learn']");
         if (learnToggle) learnToggle.classList.add("active");
+    }
+
+    if (pathname.includes("challenge.html")) {
+        const challengeLink = document.querySelector(".nav-link[data-nav='challenge']");
+        if (challengeLink) challengeLink.classList.add("active");
     }
 }
 

@@ -9,6 +9,12 @@ import { authPageUrl, formatAuthError } from "./auth-utils.js";
 import { refreshAuthNav } from "./auth-nav.js";
 import { requireVerifiedAuth } from "./auth-guard.js";
 import { sanitizeName } from "./auth-validation.js";
+import { Query } from "appwrite";
+import { databases } from "./appwrite.js";
+import { AUTH_CONFIG } from "./auth-config.js";
+import { LEVELS_DB } from "./questions.js";
+
+const CHALLENGE_COLLECTION_ID = "challenge_stats";
 
 const profileForm = document.getElementById("profileForm");
 const profileAlert = document.getElementById("profileAlert");
@@ -36,6 +42,7 @@ async function loadAccount() {
         renderAvatar(currentProfile.avatarFileId, currentUser.name);
         renderProfileForm(currentUser, currentProfile);
         setupAvatarUpload(currentUser.$id);
+        await loadChallengeStats(currentUser.$id);
     } catch (error) {
         showProfileAlert(formatAuthError(error), "error");
     }
@@ -226,4 +233,82 @@ function formatDate(iso) {
         month: "long",
         year: "numeric",
     });
+}
+
+function getHighestLevel(completedLevels) {
+    const order = ["B1", "A2", "A1"];
+    for (const level of order) {
+        if ((completedLevels || []).includes(level)) return LEVELS_DB[level].name;
+    }
+
+    const levelIds = Object.keys(LEVELS_DB);
+    for (let i = levelIds.length - 1; i >= 0; i -= 1) {
+        const id = levelIds[i];
+        if (!(completedLevels || []).includes(id)) {
+            const locked = LEVELS_DB[id].requires &&
+                !(completedLevels || []).includes(LEVELS_DB[id].requires);
+            if (!locked) return `Working on ${LEVELS_DB[id].name}`;
+        }
+    }
+
+    return "A1 - Beginner";
+}
+
+async function loadChallengeStats(userId) {
+    const section = document.getElementById("challengeStatsSection");
+    if (!section) return;
+
+    try {
+        const result = await databases.listDocuments({
+            databaseId: AUTH_CONFIG.DATABASE_ID,
+            collectionId: CHALLENGE_COLLECTION_ID,
+            queries: [Query.equal("userId", userId)],
+        });
+
+        if (result.documents.length === 0) {
+            section.innerHTML = `
+                <p class="account-challenge-empty">
+                    Start your challenge journey! Complete daily German exams to earn XP and build your streak.
+                </p>
+            `;
+            return;
+        }
+
+        const doc = result.documents[0];
+        const completedExams = doc.completedExams || [];
+        const completedLevels = doc.completedLevels || [];
+        const totalExams = Object.keys(LEVELS_DB).length * 10;
+        const highestLevel = getHighestLevel(completedLevels);
+
+        section.innerHTML = `
+            <div class="account-challenge-stats">
+                <div class="account-challenge-stat">
+                    <strong>${doc.xp ?? 0}</strong>
+                    <span>Total XP</span>
+                </div>
+                <div class="account-challenge-stat">
+                    <strong>${doc.currentStreak ?? 0}</strong>
+                    <span>Day Streak</span>
+                </div>
+                <div class="account-challenge-stat">
+                    <strong>${completedExams.length}</strong>
+                    <span>Exams Done</span>
+                </div>
+                <div class="account-challenge-stat">
+                    <strong>${completedLevels.length}/3</strong>
+                    <span>Levels Complete</span>
+                </div>
+            </div>
+            <p class="field-hint" style="text-align:center;margin-top:0.5rem;">
+                Current level: <strong>${escapeHtml(highestLevel)}</strong>
+                · ${completedExams.length}/${totalExams} total exams
+            </p>
+        `;
+    } catch {
+        section.innerHTML = `
+            <p class="account-challenge-empty">
+                Start your challenge journey! Complete daily German exams to earn XP and build your streak.
+            </p>
+        `;
+    }
 }
