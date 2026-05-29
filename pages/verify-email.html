@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email - STEM Asyut Deutsch Klub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="icon" type="image/png" href="../images/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="auth-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../images/Logo.png" alt="Deutsch Klub Logo" class="logo-img">
+                <span class="logo-text">STEM Asyut Deutsch Klub</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="auth-hero">
+        <div class="auth-hero-background">
+            <img src="../images/Bg.png" alt="Background" class="bg-image">
+            <div class="overlay"></div>
+        </div>
+        <div class="auth-hero-content">
+            <h1 class="auth-hero-title">Email <span class="gold-text">Verification</span></h1>
+            <p class="auth-hero-subtitle">Confirm your address to unlock your full member account</p>
+        </div>
+    </section>
+
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h2><i class="fas fa-shield-alt"></i> Verify Your Email</h2>
+                <p class="auth-subtitle" id="verifyStatusText">Checking your verification status…</p>
+                <div id="authAlert" class="auth-alert" role="alert"></div>
+                <div class="verify-actions">
+                    <button type="button" class="auth-submit auth-submit-secondary" id="resendVerificationBtn">
+                        <i class="fas fa-paper-plane"></i> Resend Verification Email
+                    </button>
+                    <a href="account.html" class="auth-submit auth-submit-link" id="continueToAccountBtn" hidden>
+                        <i class="fas fa-user"></i> Go to My Account
+                    </a>
+                </div>
+                <p class="auth-switch"><a href="login.html">Back to Sign In</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 SADK - STEM Asyut Deutsch Klub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/verify-email.js"></script>
+</body>
+</html>

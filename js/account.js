@@ -1,5 +1,4 @@
 import {
-    getCurrentUser,
     getUserProfile,
     logoutUser,
     getAvatarPreviewUrl,
@@ -8,6 +7,8 @@ import {
 } from "./auth-service.js";
 import { authPageUrl, formatAuthError } from "./auth-utils.js";
 import { refreshAuthNav } from "./auth-nav.js";
+import { requireVerifiedAuth } from "./auth-guard.js";
+import { sanitizeName } from "./auth-validation.js";
 
 const profileForm = document.getElementById("profileForm");
 const profileAlert = document.getElementById("profileAlert");
@@ -21,8 +22,10 @@ let currentProfile = null;
 let currentUser = null;
 
 async function loadAccount() {
+    currentUser = await requireVerifiedAuth();
+    if (!currentUser) return;
+
     try {
-        currentUser = await getCurrentUser();
         currentProfile = await getUserProfile(currentUser.$id);
 
         if (!currentProfile) {
@@ -33,8 +36,8 @@ async function loadAccount() {
         renderAvatar(currentProfile.avatarFileId, currentUser.name);
         renderProfileForm(currentUser, currentProfile);
         setupAvatarUpload(currentUser.$id);
-    } catch {
-        window.location.href = authPageUrl("login.html");
+    } catch (error) {
+        showProfileAlert(formatAuthError(error), "error");
     }
 }
 
@@ -77,6 +80,10 @@ function renderProfileForm(user, profile) {
             </select>
         </div>
         <div class="form-group form-group-readonly">
+            <label>Email status</label>
+            <p class="readonly-value">✓ Verified</p>
+        </div>
+        <div class="form-group form-group-readonly">
             <label>Member since</label>
             <p class="readonly-value">${formatDate(user.$createdAt)}</p>
         </div>
@@ -92,10 +99,10 @@ async function handleProfileSubmit(event) {
     event.preventDefault();
     hideProfileAlert();
 
-    const name = profileForm.querySelector("#profileName")?.value.trim();
+    const name = sanitizeName(profileForm.querySelector("#profileName")?.value);
     const grade = profileForm.querySelector("#profileGrade")?.value;
 
-    if (!name) {
+    if (!name || name.length < 2) {
         showProfileAlert("Please enter your name.", "error");
         return;
     }
@@ -129,11 +136,6 @@ function setupAvatarUpload(userId) {
     avatarInput.addEventListener("change", async () => {
         const file = avatarInput.files?.[0];
         if (!file) return;
-
-        if (file.size > 5 * 1024 * 1024) {
-            setAvatarStatus("Image must be under 5 MB.", true);
-            return;
-        }
 
         setAvatarStatus("Uploading…");
         avatarInput.disabled = true;
@@ -195,7 +197,7 @@ if (logoutBtn) {
     });
 }
 
-loadAccount();
+document.addEventListener("DOMContentLoaded", loadAccount);
 
 function getInitials(name) {
     if (!name) return "?";

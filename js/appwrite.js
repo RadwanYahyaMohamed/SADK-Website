@@ -8,6 +8,4 @@ const account = new Account(client);
 const databases = new Databases(client);
 const storage = new Storage(client);
 
-client.ping();
-
 export { client, account, databases, storage };

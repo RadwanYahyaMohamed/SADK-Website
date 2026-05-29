@@ -61,10 +61,29 @@
 | Create | **Users** |
 | Read | **Users** |
 | Update | **Users** |
+| Delete | **Users** |
 
 وفعّل **Row security** (ON) في نفس صفحة Settings.
 
-> عند التسجيل، الكود يحفظ صفًا لكل عضو. صورة البروفايل تُرفع لاحقًا من صفحة **My Account**.
+> عند التسجيل، الكود يحفظ صفًا لكل عضو مع صلاحيات على مستوى الصف (كل عضو يقرأ/يعدّل ملفه فقط). صورة البروفايل تُرفع لاحقًا من صفحة **My Account** بعد تأكيد الإيميل.
+
+### 6ب) إعدادات الأمان في Auth (مهم للنسخة الجديدة)
+
+1. **Auth** → **Settings**
+2. فعّل **Email/Password**
+3. فعّل **Email verification** (تأكيد البريد) إن وُجدت في مشروعك
+4. اضبط **Session duration** (مثلاً 30 يوم) حسب ما تريد
+5. **Auth** → **Email templates** (أو Messaging):
+   - تأكد أن قوالب **Verification** و **Password recovery** مفعّلة
+   - على Appwrite Cloud غالبًا الإيميلات جاهزة؛ إن أردت SMTP خاصًا: **Settings** → **SMTP**
+
+### 6ج) منصات الويب — أضف كل هذه Hostnames
+
+| الاسم | Hostname |
+|--------|----------|
+| Local | `localhost` |
+| Production | `sadk.appwrite.network` |
+| Custom domain | نطاقك إن وُجد (بدون `https://`) |
 
 ### 7) Storage لصور البروفايل
 
@@ -143,13 +162,89 @@ npm.cmd run build
 | الملف | الوظيفة |
 |-------|---------|
 | `js/appwrite.js` | اتصال Appwrite |
-| `js/auth-config.js` | IDs قاعدة البيانات |
-| `js/auth-service.js` | تسجيل / دخول / حفظ في DB |
-| `pages/login.html` | صفحة الدخول |
-| `pages/signup.html` | صفحة إنشاء حساب |
-| `pages/account.html` | الملف الشخصي |
+| `js/auth-config.js` | IDs + إعدادات الأمان |
+| `js/auth-service.js` | تسجيل / دخول / تحقق إيميل / استعادة كلمة المرور |
+| `js/auth-validation.js` | قواعد كلمة المرور والإيميل |
+| `js/auth-guard.js` | حماية الصفحات (يتطلب تسجيل دخول) |
+| `js/auth-ui.js` | واجهة كلمة المرور (قوة + إظهار/إخفاء) |
+| `pages/login.html` | تسجيل الدخول |
+| `pages/signup.html` | إنشاء حساب |
+| `pages/account.html` | الملف الشخصي (محمي) |
+| `pages/verify-email.html` | تأكيد البريد |
+| `pages/forgot-password.html` | طلب رابط استعادة |
+| `pages/reset-password.html` | تعيين كلمة مرور جديدة |
 
 إذا غيّرت Database ID أو Collection ID في Console، عدّل `js/auth-config.js` ليطابقهم.
+
+---
+
+## الجزء 4: نشر النسخة الجديدة على Appwrite Sites (خطوة بخطوة)
+
+### الخطوة 1 — رفع الكود على GitHub
+
+1. افتح المشروع محليًا في Cursor/VS Code
+2. احفظ كل الملفات
+3. من Terminal:
+
+```bash
+git add .
+git commit -m "Enhance auth security: email verification, password recovery, stronger passwords"
+git push origin main
+```
+
+> إذا الفرع الرئيسي اسمه `master` استبدل `main` بـ `master`.
+
+### الخطوة 2 — إعداد Appwrite Console (قبل النشر)
+
+1. https://cloud.appwrite.io → مشروع **STEM Asyut Deutsch Klub**
+2. **Auth** → **Platforms** → تأكد من:
+   - `localhost`
+   - `sadk.appwrite.network`
+3. **Auth** → **Settings** → فعّل Email/Password + Email verification
+4. **Databases** → `sadk_members` → `profiles` → Permissions تتضمن **Delete** للـ Users
+5. **Storage** → `avatars` → File security + صلاحيات Users
+
+### الخطوة 3 — نشر تلقائي من GitHub
+
+1. **Sites** → موقع **stem-asyut-deutsch-klub** (أو اسم موقعك)
+2. تأكد من الإعدادات:
+   - **Repository:** `RadwanYahyaMohamed/SADK-Website`
+   - **Branch:** `main` (أو الفرع الذي تستخدمه)
+   - **Install command:** `npm install`
+   - **Build command:** `npm install && npm run build`
+   - **Output directory:** `dist`
+3. بعد `git push`، انتظر **Deploy** حتى تصبح الحالة **Ready** / **Success**
+4. افتح: https://sadk.appwrite.network
+
+### الخطوة 4 — اختبار بعد النشر
+
+| الاختبار | الرابط |
+|----------|--------|
+| تسجيل حساب جديد | `/pages/signup.html` |
+| تأكيد الإيميل | افتح الرابط من صندوق الوارد |
+| تسجيل الدخول | `/pages/login.html` |
+| نسيت كلمة المرور | `/pages/forgot-password.html` |
+| الحساب | `/pages/account.html` |
+
+### الخطوة 5 — إن لم يُنشر تلقائيًا
+
+1. **Sites** → موقعك → **Deployments**
+2. اضغط **Redeploy** أو **Create deployment**
+3. راجع **Build logs** إن فشل البناء
+
+---
+
+## ما الذي تغيّر في الأمان؟
+
+| الميزة | الوصف |
+|--------|--------|
+| كلمة مرور قوية | 8+ أحرف، حرف كبير وصغير، رقم، رمز |
+| تأكيد الإيميل | رابط تحقق بعد التسجيل |
+| استعادة كلمة المرور | forgot + reset |
+| حماية الصفحات | `account.html` للمسجّلين فقط |
+| صلاحيات الصفوف | كل عضو يصل لملفه فقط في DB و Storage |
+| محاولات دخول | قفل مؤقت بعد 5 محاولات فاشلة (15 دقيقة) |
+| شروط العضوية | checkbox عند التسجيل |
 
 ---
 
@@ -162,6 +257,9 @@ npm.cmd run build
 | `Unauthorized` على DB | راجع صلاحيات Table (Users → Create/Read/Update) + Row security |
 | رفع الصورة فشل | تأكد bucket `avatars` + عمود `avatarFileId` + صلاحيات Storage |
 | التسجيل لا يعمل على النطاق الحقيقي | أضف النطاق في Platforms |
+| لا يصل إيميل التحقق | راجع Email templates + Spam + فعّل verification في Auth |
+| رابط التحقق لا يعمل | أضف `sadk.appwrite.network` في Platforms |
+| لا أستطيع تعديل الحساب | أكّد الإيميل أولاً من الرابط المرسل |
 
 ---
 

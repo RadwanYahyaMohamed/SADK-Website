@@ -1,28 +1,58 @@
 import { registerUser } from "./auth-service.js";
-import { formatAuthError } from "./auth-utils.js";
+import { formatAuthError, authPageUrl } from "./auth-utils.js";
+import { redirectIfAuthenticated } from "./auth-guard.js";
+import {
+    isValidEmail,
+    normalizeEmail,
+    sanitizeName,
+    validatePassword,
+} from "./auth-validation.js";
+import { setupPasswordStrength, setupPasswordToggles } from "./auth-ui.js";
 
 const form = document.getElementById("signupForm");
 const alertBox = document.getElementById("authAlert");
 const submitBtn = document.getElementById("signupSubmit");
+
+document.addEventListener("DOMContentLoaded", () => {
+    redirectIfAuthenticated();
+    setupPasswordToggles();
+    setupPasswordStrength(
+        document.getElementById("password"),
+        document.getElementById("passwordStrength"),
+        document.getElementById("passwordHint")
+    );
+});
 
 if (form) {
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
         hideAlert();
 
-        const name = form.name.value.trim();
-        const email = form.email.value.trim();
+        const name = sanitizeName(form.name.value);
+        const email = normalizeEmail(form.email.value);
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
         const grade = form.grade.value;
+        const termsAccepted = form.terms?.checked;
 
-        if (!name || !email || !password) {
-            showAlert("Please fill in all required fields.", "error");
+        if (!name || name.length < 2) {
+            showAlert("Please enter your full name (at least 2 characters).", "error");
             return;
         }
 
-        if (password.length < 8) {
-            showAlert("Password must be at least 8 characters.", "error");
+        if (!isValidEmail(email)) {
+            showAlert("Please enter a valid email address.", "error");
+            return;
+        }
+
+        if (!grade) {
+            showAlert("Please select your grade.", "error");
+            return;
+        }
+
+        const passwordCheck = validatePassword(password);
+        if (!passwordCheck.valid) {
+            showAlert(passwordCheck.errors[0], "error");
             return;
         }
 
@@ -31,14 +61,22 @@ if (form) {
             return;
         }
 
+        if (!termsAccepted) {
+            showAlert("Please accept the membership terms to continue.", "error");
+            return;
+        }
+
         setLoading(true);
 
         try {
             await registerUser({ name, email, password, grade });
-            showAlert("Account created! Redirecting…", "success");
+            showAlert(
+                "Account created! Check your email to verify your account, then continue.",
+                "success"
+            );
             setTimeout(() => {
-                window.location.href = "account.html";
-            }, 800);
+                window.location.href = authPageUrl("verify-email.html");
+            }, 1200);
         } catch (error) {
             showAlert(formatAuthError(error), "error");
         } finally {
