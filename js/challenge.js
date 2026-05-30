@@ -408,7 +408,7 @@ async function handleAnswer(selectedIdx, correctIdx, optionBtn) {
         btn.disabled = true;
     });
 
-    const advanceDelay = 1600;
+    const advanceDelay = 4000;
 
     if (selectedIdx === correctIdx) {
         stats.xp += 10;
@@ -592,7 +592,7 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-function showAuthGateMessage(title, message, redirectUrl, delayMs = 3500, redirectLabel = "Redirecting…") {
+function showAuthGateMessage(title, message, redirectUrl, delayMs = 5500, redirectLabel = "Redirecting…") {
     const loading = loadingState();
     if (loading) {
         loading.classList.add("challenge-auth-gate");
@@ -620,7 +620,7 @@ async function initChallenge() {
             "Login Required",
             "You must sign in before accessing the Daily Challenge. Please log in to track your XP and streak.",
             authPageUrl("login.html"),
-            3500,
+            5500,
             "Redirecting you to sign in…"
         );
         return;
@@ -631,7 +631,7 @@ async function initChallenge() {
             "Email Verification Required",
             "Please verify your email before using the Daily Challenge.",
             authPageUrl("verify-email.html"),
-            3500,
+            5500,
             "Redirecting you to email verification…"
         );
         return;
