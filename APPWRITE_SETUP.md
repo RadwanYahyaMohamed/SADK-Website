@@ -136,11 +136,26 @@ npm.cmd run build
 1. في Console: **Sites** → **Create site**
 2. اختر **Connect GitHub** (يفضل) أو **Manual deploy**
 3. إذا GitHub:
-   - اربط repo المشروع
-   - **Build command:** `npm install && npm run build`
-   - **Output directory:** `dist`
+   - **Repository:** `RadwanYahyaMohamed/SADK-Website`
+   - **Branch:** `main`
+   - **Build runtime:** `node-22` (مهم — Vite 8 يحتاج Node 20.19+)
    - **Install command:** `npm install`
+   - **Build command:** `npm run build` (لا تكرر `npm install` هنا إن كان Install موجودًا)
+   - **Output directory:** `dist`
+   - **Root directory:** `/` (فارغ أو جذر المشروع)
 4. إذا Manual: ارفع محتويات مجلد `dist` بعد البناء
+
+### ب-2) إذا فشل الـ Deployment (Build failed)
+
+| السبب الشائع | الحل |
+|--------------|-----|
+| Node.js قديم (18) | **Sites → Settings → Build settings → Build runtime → `node-22`** |
+| رسالة `EBADENGINE` أو `requires node` | نفس الحل + تأكد أن `package-lock.json` موجود على GitHub |
+| Branch خاطئ | اختر **`main`** وليس `feature/challenge-page` |
+| Output خاطئ | **Output directory** = `dist` بالضبط |
+| Build timeout (صور كثيرة) | انتظر أو أعد **Redeploy**؛ المشروع ~25MB بعد البناء |
+
+بعد تغيير الإعدادات: **Deployments → Redeploy** (أو ادفع commit جديد على `main`).
 
 ### ج) إضافة Domain مخصص
 
@@ -211,7 +226,8 @@ git push origin main
    - **Repository:** `RadwanYahyaMohamed/SADK-Website`
    - **Branch:** `main` (أو الفرع الذي تستخدمه)
    - **Install command:** `npm install`
-   - **Build command:** `npm install && npm run build`
+   - **Build runtime:** `node-22`
+   - **Build command:** `npm run build`
    - **Output directory:** `dist`
 3. بعد `git push`، انتظر **Deploy** حتى تصبح الحالة **Ready** / **Success**
 4. افتح: https://sadk.appwrite.network
