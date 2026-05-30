@@ -152,6 +152,20 @@ export async function registerUser({ name, email, password, grade }) {
 
         return account.get();
     } catch (error) {
+        const isProfileError =
+            error?.message?.toLowerCase().includes("document") ||
+            error?.code === 409 ||
+            error?.code === 400;
+
+        if (isProfileError) {
+            try {
+                await sendEmailVerification();
+            } catch {
+                // ignore verification send failures
+            }
+            return account.get();
+        }
+
         await clearStaleSessions();
         clearStoredSession();
         throw error;

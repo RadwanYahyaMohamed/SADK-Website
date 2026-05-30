@@ -395,29 +395,46 @@ body::before {
     border: 2px solid transparent;
 }
 
+/* About Team → رمادي غامق أنيق */
 .btn-primary {
-    background-color: var(--color-red);
+    background-color: #1a1a2e;
     color: var(--color-white);
+    border-color: #1a1a2e;
 }
-
 .btn-primary:hover {
-    background-color: var(--color-dark-red);
+    background-color: transparent;
+    color: #1a1a2e;
+    border-color: #1a1a2e;
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
 }
 
+/* Learn German → ذهبي هادئ */
 .btn-secondary {
     background-color: transparent;
-    color: var(--color-red);
-    border-color: var(--color-red);
+    color: #b8922a;
+    border-color: #b8922a;
 }
-
 .btn-secondary:hover {
-    background-color: var(--color-red);
+    background-color: #b8922a;
     color: var(--color-white);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
+/* Daily Challenge → أحمر هادئ */
+.btn-challenge {
+    background-color: #c0392b;
+    color: var(--color-white);
+    border-color: #c0392b;
+}
+.btn-challenge:hover {
+    background-color: transparent;
+    color: #c0392b;
+    border-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
 .btn-auth {
     background: linear-gradient(135deg, var(--color-gold), var(--color-dark-gold));
     color: var(--color-black);
@@ -679,7 +696,7 @@ body::before {
    Responsive Design
    ============================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .hamburger {
         display: flex;
     }
@@ -694,32 +711,58 @@ body::before {
         text-align: center;
         transition: var(--transition);
         box-shadow: var(--shadow);
-        padding: 2rem 0;
+        padding: 1rem 0;
         gap: 0;
+        display: none;
+        overflow-y: auto;
+        max-height: calc(100vh - 70px);
+        z-index: 999;
     }
 
     .nav-menu.active {
         left: 0;
-    }
-
-    .nav-item {
-        width: 100%;
-    }
-
-    .nav-link {
-        padding: 1rem;
-        width: 100%;
+        display: flex;
     }
 
     .dropdown-menu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
+        position: static !important;
+        display: none;
         box-shadow: none;
-        background-color: var(--color-light-gray);
-        margin-top: 0;
-        border-radius: 0;
+        width: 100%;
+        min-width: unset;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+
+    .dropdown-menu.open {
+        display: block;
+    }
+
+    .dropdown-submenu {
+        position: static !important;
+        display: none;
+        width: 100%;
+    }
+
+    .dropdown-submenu.open {
+        display: block;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
     }
 
     .dropdown-submenu {

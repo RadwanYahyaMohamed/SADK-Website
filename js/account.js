@@ -305,6 +305,16 @@ async function loadChallengeStats(userId) {
                 · ${completedExams.length}/${totalExams} total exams
             </p>
         `;
+
+        const existingRefresh = section.querySelector(".challenge-refresh-btn");
+        if (existingRefresh) existingRefresh.remove();
+
+        const refreshBtn = document.createElement("button");
+        refreshBtn.className = "btn btn-secondary challenge-refresh-btn";
+        refreshBtn.style.cssText = "margin: 1.5rem auto 0; display: block; font-size:0.95rem; padding:0.65rem 1.2rem;";
+        refreshBtn.innerHTML = 'Refresh Stats';
+        refreshBtn.addEventListener("click", () => loadChallengeStats(userId));
+        section.appendChild(refreshBtn);
     } catch {
         section.innerHTML = `
             <p class="account-challenge-empty">

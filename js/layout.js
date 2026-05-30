@@ -185,6 +185,30 @@ function initHamburger() {
         hamburger.classList.toggle("active");
     });
 
+    navMenu.querySelectorAll("a[href]").forEach((link) => {
+        if (link.getAttribute("href") === "#") return;
+
+        link.addEventListener("click", () => {
+            navMenu.classList.remove("active");
+            hamburger.classList.remove("active");
+        });
+    });
+
+    navMenu.querySelectorAll(".dropdown-toggle, .dropdown-toggle-sub").forEach((toggle) => {
+        toggle.addEventListener("click", (e) => {
+            if (window.innerWidth > 1024) return;
+            if (toggle.getAttribute("href") === "#") {
+                e.preventDefault();
+            }
+
+            const parent = toggle.closest(".dropdown, .dropdown-item");
+            const submenu = parent?.querySelector(
+                ":scope > .dropdown-menu, :scope > .dropdown-submenu"
+            );
+            if (submenu) submenu.classList.toggle("open");
+        });
+    });
+
     document.addEventListener("click", (event) => {
         if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
             navMenu.classList.remove("active");
