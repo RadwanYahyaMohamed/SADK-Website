@@ -1,3 +1,44 @@
+// Function to add the Announcement Bar
+function addAnnouncementBar() {
+    const expiryDate = new Date('2026-07-03T23:59:59+03:00'); // التاريخ المطلوب
+    const now = new Date();
+
+    if (now < expiryDate) {
+        const bar = document.createElement('div');
+        bar.id = "announcement-bar";
+        bar.style.cssText = `
+            background-color: #004a99; 
+            color: #ffffff; 
+            text-align: center; 
+            padding: 12px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 9999; 
+            font-size: 16px; 
+            font-weight: 600;
+        `;
+        bar.innerHTML = `
+            STEM Asyut Deutsch Klub | 2026–2027 Leadership Applications 
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScKWNI-QnYfjhmyy4V8K4SPtd7e2kjU_ZHF9ZROXM-cbNtsXw/viewform?usp=dialog" 
+               target="_blank" 
+               style="color: #ffcc00; text-decoration: underline; margin-left: 15px;">
+               Apply Now!
+            </a>
+        `;
+        
+        // إدراج الشريط في أول الـ Body
+        document.body.prepend(bar);
+        
+        // دفع المحتوى لأسفل حتى لا يغطي الشريط القائمة
+        document.body.style.paddingTop = '50px';
+    }
+}
+
+// تشغيل الوظيفة عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', addAnnouncementBar);
+
+
 // ============================================
 // Shared layout: navbar + footer injection
 // ============================================
