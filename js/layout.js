@@ -23,7 +23,7 @@ function addAnnouncementBar() {
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScKWNI-QnYfjhmyy4V8K4SPtd7e2kjU_ZHF9ZROXM-cbNtsXw/viewform?usp=dialog" 
                target="_blank" 
                style="color: #ffcc00; text-decoration: underline; margin-left: 15px;">
-               Apply Now!
+               Apply Now 
             </a>
         `;
         
