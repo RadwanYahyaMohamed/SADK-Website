@@ -338,7 +338,7 @@ body.nav-open {
     justify-content: center;
     text-align: center;
     overflow: hidden;
-    padding-top: 72px; /* حجز مساحة علوية على اللابتوب لمنع تسلل الكرت تحت الهيدر المثبت */
+    padding-top: 72px; /* حجز مساحة علوية على  لمنع تسلل الكرت تحت الهيدر المثبت */
 }
 
 .hero-background {
