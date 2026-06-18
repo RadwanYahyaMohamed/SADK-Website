@@ -64,156 +64,137 @@ body::before {
    Navigation Bar
    ============================================ */
 
+/* ==========================================================================
+   PREMIUM MODERN NAVBAR DESIGN - SADK WHITE & LUXURY GREY THEME
+   ========================================================================== */
+
+body.nav-open {
+    overflow: hidden; /* يمنع السكرول الخلفي تماماً أثناء فتح قائمة الموبايل */
+}
+
 .navbar {
-    background-color: var(--color-white);
-    box-shadow: var(--shadow);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    padding: 0.5rem 0;
+    position: fixed;
+    top: 0; /* بيتم ترحيله برمجياً بفضل دالة الـ padding في الـ JS بالتالي لا يحدث تداخل */
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+    z-index: 9999;
+    transition: background 0.3s ease, border 0.3s ease;
 }
 
 .nav-container {
-    width: 100%;
-    max-width: 100%;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 0 10px 0 14px;
-    display: grid;
-    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+    padding: 0 24px;
+    height: 72px;
+    display: flex;
     align-items: center;
-    column-gap: 1rem;
+    justify-content: space-between;
 }
 
+/* Logo Section */
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-weight: bold;
-    font-size: 0.95rem;
-    color: var(--color-black);
-    flex-shrink: 0;
-    min-width: 0;
+    gap: 12px;
+    cursor: pointer;
 }
 
-.logo-img {
-    height: 48px;
+.nav-logo .logo-img {
+    height: 42px;
     width: auto;
-    flex-shrink: 0;
+    object-fit: contain;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logo-text {
-    color: var(--color-red);
-    line-height: 1.15;
-    white-space: nowrap;
-    font-size: clamp(0.78rem, 1.4vw, 1.05rem);
+.nav-logo:hover .logo-img {
+    transform: rotate(-5deg) scale(1.05);
 }
 
+.nav-logo .logo-text {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: 0.5px;
+}
+
+/* Base Menu Links */
 .nav-menu {
     display: flex;
-    list-style: none;
-    gap: clamp(0.15rem, 0.5vw, 0.45rem);
     align-items: center;
-    justify-content: flex-end;
-    flex-wrap: nowrap;
-    margin: 0;
-    padding: 0;
-    min-width: 0;
-    width: 100%;
-}
-
-.nav-menu .nav-auth-item {
-    flex-shrink: 0;
-}
-
-.nav-item {
-    position: relative;
+    gap: 8px;
+    list-style: none;
 }
 
 .nav-link {
+    color: #475569;
     text-decoration: none;
-    color: #1a1a1a;
+    font-size: 14.5px;
     font-weight: 600;
-    padding: 0.4rem clamp(0.35rem, 0.55vw, 0.65rem);
-    border-radius: 5px;
-    transition: var(--transition);
-    display: block;
-    font-size: clamp(0.78rem, 1.05vw, 0.92rem);
-    white-space: nowrap;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-    letter-spacing: -0.01em;
+    padding: 8px 14px;
+    border-radius: 10px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-@media (min-width: 1200px) {
-    .nav-container {
-        padding: 0 18px 0 22px;
-        column-gap: 1.25rem;
-    }
-
-    .logo-img {
-        height: 54px;
-    }
-
-    .logo-text {
-        font-size: 1.05rem;
-    }
-
-    .nav-menu {
-        gap: 0.5rem;
-    }
-
-    .nav-link {
-        padding: 0.45rem 0.75rem;
-        font-size: 0.94rem;
-    }
+.nav-link:hover {
+    color: #0f172a;
+    background: linear-gradient(135deg, rgba(241, 245, 249, 0.85) 0%, rgba(226, 232, 240, 0.6) 100%);
 }
 
-@media (min-width: 1400px) {
-    .nav-container {
-        padding: 0 24px 0 28px;
-    }
-
-    .nav-menu {
-        gap: 0.65rem;
-    }
-
-    .nav-link {
-        padding: 0.5rem 0.85rem;
-        font-size: 0.98rem;
-    }
-}
-
-.nav-link:hover,
 .nav-link.active {
-    color: var(--color-red);
-    background-color: rgba(221, 0, 0, 0.1);
+    color: #0f172a;
+    background: #f1f5f9;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
 }
 
-/* Dropdown Menu */
-.dropdown {
+/* Dropdown Chevrons Icons */
+.nav-chevron {
+    font-size: 9px;
+    transition: transform 0.2s ease;
+    opacity: 0.7;
+}
+.nav-chevron-sub {
+    font-size: 9px;
+    margin-left: auto;
+    opacity: 0.5;
+}
+.nav-item.dropdown:hover .nav-chevron {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Sub-menus (Desktop) */
+.nav-item.dropdown {
     position: relative;
 }
 
 .dropdown-menu {
     position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: var(--color-white);
-    box-shadow: var(--shadow-hover);
-    border-radius: 8px;
-    min-width: 250px;
-    padding: 0.5rem 0;
+    top: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 32px rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    padding: 8px;
+    min-width: 190px;
     list-style: none;
     opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: var(--transition);
-    margin-top: 0.5rem;
+    pointer-events: none;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
 }
 
-.dropdown:hover .dropdown-menu {
+.nav-item.dropdown:hover .dropdown-menu {
     opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
 }
 
 .dropdown-item {
@@ -221,73 +202,268 @@ body::before {
 }
 
 .dropdown-toggle-sub {
-    padding: 0.75rem 1.5rem;
-    display: block;
-    color: #1a1a1a;
+    color: #475569;
     text-decoration: none;
-    transition: var(--transition);
+    font-size: 14px;
     font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
 }
 
 .dropdown-toggle-sub:hover {
-    background-color: var(--color-light-gray);
-    color: var(--color-red);
+    color: #0f172a;
+    background: #f1f5f9;
 }
 
+/* Multi-level Dropdown (Submenu G10/G11) */
 .dropdown-submenu {
     position: absolute;
-    left: 100%;
     top: 0;
-    background-color: var(--color-white);
-    box-shadow: var(--shadow-hover);
-    border-radius: 8px;
-    min-width: 280px;
-    padding: 0.5rem 0;
+    left: calc(100% + 4px);
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 32px rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    padding: 6px;
+    min-width: 165px;
     list-style: none;
     opacity: 0;
-    visibility: hidden;
-    transform: translateX(-10px);
-    transition: var(--transition);
+    pointer-events: none;
+    transition: transform 0.2s ease, opacity 0.15s ease;
+    transform: translateX(6px);
 }
 
-.dropdown-item:hover .dropdown-submenu {
+.dropdown-subparent:hover .dropdown-submenu {
     opacity: 1;
-    visibility: visible;
+    pointer-events: auto;
     transform: translateX(0);
 }
 
-.dropdown-submenu li a {
-    padding: 0.75rem 1.5rem;
-    display: block;
-    color: #1a1a1a;
+/* Premium Account Buttons System */
+.nav-link-login-custom {
+    color: #475569;
     text-decoration: none;
-    transition: var(--transition);
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 14.5px;
+    font-weight: 600;
+    padding: 8px 16px;
+    transition: color 0.2s;
+}
+.nav-link-login-custom:hover {
+    color: #0f172a;
 }
 
-.dropdown-submenu li a:hover {
-    background-color: var(--color-light-gray);
-    color: var(--color-red);
-    padding-left: 2rem;
+.nav-link-signup-pill {
+    background: #0f172a;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 9px 20px;
+    border-radius: 99px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+}
+.nav-link-signup-pill:hover {
+    background: #1e293b;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
 }
 
-/* Hamburger Menu (Mobile) */
+.nav-link-account-pill {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #1e293b !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 99px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link-account-pill i {
+    font-size: 16px;
+    color: #64748b;
+}
+.nav-link-account-pill:hover {
+    border-color: rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.nav-link-account-pill.verify-alert {
+    border-color: rgba(222, 0, 0, 0.2);
+    color: #DE0000 !important;
+}
+.nav-link-account-pill.verify-alert i {
+    color: #DE0000;
+}
+
+/* Smooth Hamburger Trigger Icon */
 .hamburger {
     display: none;
     flex-direction: column;
+    justify-content: space-between;
+    width: 22px;
+    height: 16px;
     cursor: pointer;
-    gap: 5px;
+    z-index: 10001;
 }
 
 .hamburger span {
-    width: 25px;
-    height: 3px;
-    background-color: var(--color-black);
-    border-radius: 3px;
-    transition: var(--transition);
+    width: 100%;
+    height: 2px;
+    background-color: #0f172a;
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN & MOBILE DRAWER (TABLETS & PHONES)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hamburger {
+        display: flex;
+    }
+
+    /* قائمة الموبايل الانسيابية الفخمة جداً */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 320px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        box-shadow: -10px 0 40px rgba(15, 23, 42, 0.06);
+        border-left: 1px solid rgba(0, 0, 0, 0.04);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 90px 24px 40px 24px;
+        gap: 6px;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto; /* يسمح بالـ scroll الداخلي بحرية لو الشاشة صغيرة */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 15px;
+        border-radius: 12px;
+    }
+
+    /* تحسين القوائم المنسدلة في الموبايل بحواف ناعمة دائرية */
+    .dropdown-menu {
+        position: static;
+        transform: none !important;
+        opacity: 1;
+        pointer-events: auto;
+        box-shadow: none;
+        border: none;
+        background: rgba(241, 245, 249, 0.5);
+        margin: 4px 0 8px 0;
+        padding: 4px;
+        display: none; /* يتم فتحها بمرونة بالـ JS */
+        width: 100%;
+        border-radius: 12px;
+    }
+
+    .dropdown-menu.open {
+        display: block;
+    }
+
+    .dropdown-submenu {
+        position: static;
+        transform: none !important;
+        opacity: 1;
+        pointer-events: auto;
+        box-shadow: none;
+        border: none;
+        background: rgba(226, 232, 240, 0.5);
+        margin: 4px 0;
+        padding: 4px;
+        display: none;
+        width: 100%;
+        border-radius: 12px;
+    }
+
+    .dropdown-submenu.open {
+        display: block;
+    }
+
+    .dropdown-toggle-sub {
+        padding: 11px 14px;
+        font-size: 14.5px;
+    }
+
+    /* تدوير أيقونات الـ Chevron عند الفتح في الموبايل لإضفاء طابع احترافي */
+    .nav-chevron, .nav-chevron-sub {
+        transition: transform 0.25s ease;
+    }
+    .submenu-expanded > .nav-chevron,
+    .submenu-expanded > .nav-chevron-sub {
+        transform: rotate(180deg) !important;
+    }
+
+    /* تكييف أزرار الحساب والمصادقة في الـ Drawer */
+    .auth-btn-container {
+        margin-top: 16px;
+        width: 100%;
+    }
+    .nav-link-signup-pill {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        border-radius: 12px;
+    }
+    .nav-link-account-pill {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        border-radius: 12px;
+    }
+    .nav-link-login-custom {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        width: 100%; /* تأخذ الشاشة كاملة على الهواتف الصغيرة جداً لراحة تصفح مثالية */
+    }
+}
 /* ============================================
    Hero Section
    ============================================ */
