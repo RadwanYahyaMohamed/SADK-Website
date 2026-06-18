@@ -1,44 +1,218 @@
-// Function to add the Announcement Bar
 function addAnnouncementBar() {
-    const expiryDate = new Date('2026-07-03T23:59:59+03:00'); // التاريخ المطلوب
+    const expiryDate = new Date('2026-07-03T23:59:59+03:00');
     const now = new Date();
 
     if (now < expiryDate) {
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sadk-gradient {
+                0%   { background-position: 0% 50%; }
+                50%  { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+            @keyframes sadk-shimmer {
+                0%   { left: -70%; }
+                100% { left: 130%; }
+            }
+            @keyframes sadk-slide-in {
+                from { transform: translateY(-100%); opacity: 0; }
+                to   { transform: translateY(0);     opacity: 1; }
+            }
+            @keyframes sadk-pulse {
+                0%, 100% { box-shadow: 0 0 0 0 rgba(184,146,42,0.55); }
+                50%       { box-shadow: 0 0 0 7px rgba(184,146,42,0);  }
+            }
+            @keyframes sadk-arrow {
+                0%, 100% { transform: translateX(0); }
+                50%       { transform: translateX(3px); }
+            }
+            @keyframes sadk-star {
+                0%, 100% { opacity: 0.4; transform: scale(1)   rotate(0deg);  }
+                50%       { opacity: 1;   transform: scale(1.3) rotate(15deg); }
+            }
+            @keyframes sadk-dot-pulse {
+                0%, 100% { opacity: 1;   transform: scale(1);   }
+                50%       { opacity: 0.5; transform: scale(0.7); }
+            }
+
+            #announcement-bar {
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%;
+                z-index: 9999;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                border-bottom: 1.5px solid rgba(184,146,42,0.45);
+                background: linear-gradient(
+                    120deg,
+                    #0f172a 0%, #1a2540 15%, #7a1a14 40%,
+                    #c0392b 55%, #b8922a 72%, #1a2540 88%, #0f172a 100%
+                );
+                background-size: 300% 300%;
+                animation: sadk-gradient 8s ease infinite, sadk-slide-in 0.5s ease-out;
+                box-shadow:
+                    0 2px 20px rgba(192,57,43,0.35),
+                    0 1px 0 rgba(184,146,42,0.15) inset;
+            }
+
+            #announcement-bar::before {
+                content: '';
+                position: absolute;
+                top: 0; left: -70%;
+                width: 40%; height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+                animation: sadk-shimmer 3.5s linear infinite;
+                pointer-events: none;
+            }
+
+            #announcement-bar::after {
+                content: '';
+                position: absolute;
+                bottom: 0; left: 10%;
+                width: 80%; height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(240,201,64,0.8), transparent);
+            }
+
+            #announcement-bar .ab-inner {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                position: relative;
+                z-index: 1;
+                padding: 0 16px;
+                max-width: 100%;
+            }
+
+            #announcement-bar .ab-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                background: rgba(184,146,42,0.18);
+                border: 1px solid rgba(184,146,42,0.5);
+                color: #f0c940;
+                font-size: 10px;
+                font-weight: 700;
+                letter-spacing: 1.8px;
+                text-transform: uppercase;
+                padding: 3px 10px;
+                border-radius: 20px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            #announcement-bar .ab-dot {
+                width: 5px; height: 5px;
+                border-radius: 50%;
+                background: #f0c940;
+                animation: sadk-dot-pulse 1.8s ease-in-out infinite;
+                flex-shrink: 0;
+            }
+
+            #announcement-bar .ab-text {
+                color: rgba(255,255,255,0.93);
+                font-size: 13.5px;
+                font-weight: 500;
+                letter-spacing: 0.2px;
+                white-space: nowrap;
+            }
+
+            #announcement-bar .ab-text b {
+                color: #ffffff;
+                font-weight: 700;
+            }
+
+            #announcement-bar .ab-sep {
+                width: 1px; height: 18px;
+                background: rgba(255,255,255,0.2);
+                flex-shrink: 0;
+            }
+
+            #announcement-bar .ab-star {
+                color: rgba(240,201,64,0.65);
+                font-size: 11px;
+                animation: sadk-star 2.4s ease-in-out infinite;
+                flex-shrink: 0;
+                user-select: none;
+            }
+
+            #announcement-bar .ab-star.ab-star-2 {
+                animation-delay: 1.2s;
+            }
+
+            #announcement-bar .ab-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                background: linear-gradient(135deg, #b8922a 0%, #f0c940 50%, #b8922a 100%);
+                background-size: 200% 200%;
+                color: #0f172a !important;
+                font-size: 12.5px;
+                font-weight: 800;
+                letter-spacing: 0.4px;
+                text-decoration: none !important;
+                padding: 5px 15px;
+                border-radius: 20px;
+                white-space: nowrap;
+                flex-shrink: 0;
+                animation: sadk-gradient 3s ease infinite, sadk-pulse 2s ease-in-out infinite;
+                transition: transform 0.2s ease, filter 0.2s ease;
+            }
+
+            #announcement-bar .ab-btn:hover {
+                transform: scale(1.07);
+                filter: brightness(1.1);
+                color: #0f172a !important;
+                text-decoration: none !important;
+            }
+
+            #announcement-bar .ab-arrow {
+                font-size: 13px;
+                animation: sadk-arrow 1.1s ease-in-out infinite;
+                display: inline-block;
+            }
+
+            @media (max-width: 640px) {
+                #announcement-bar .ab-badge,
+                #announcement-bar .ab-star,
+                #announcement-bar .ab-sep  { display: none; }
+                #announcement-bar .ab-text { font-size: 12px; }
+                #announcement-bar .ab-inner { gap: 10px; }
+            }
+        `;
+        document.head.appendChild(style);
+
         const bar = document.createElement('div');
-        bar.id = "announcement-bar";
-        bar.style.cssText = `
-            background-color: #004a99; 
-            color: #ffffff; 
-            text-align: center; 
-            padding: 12px; 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 9999; 
-            font-size: 16px; 
-            font-weight: 600;
-        `;
+        bar.id = 'announcement-bar';
         bar.innerHTML = `
-            STEM Asyut Deutsch Klub | 2026–2027 Leadership Applications 
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScKWNI-QnYfjhmyy4V8K4SPtd7e2kjU_ZHF9ZROXM-cbNtsXw/viewform?usp=dialog" 
-               target="_blank" 
-               style="color: #ffcc00; text-decoration: underline; margin-left: 15px;">
-               Apply Now! 
-            </a>
+            <div class="ab-inner">
+                <span class="ab-star">✦</span>
+                <div class="ab-badge">
+                    <span class="ab-dot"></span>
+                    New Season
+                </div>
+                <span class="ab-text">
+                    <b>STEM Asyut Deutsch Klub</b> — 2026–2027 Leadership Applications are open
+                </span>
+                <div class="ab-sep"></div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScKWNI-QnYfjhmyy4V8K4SPtd7e2kjU_ZHF9ZROXM-cbNtsXw/viewform?usp=dialog"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="ab-btn">
+                   Apply Now! <span class="ab-arrow">→</span>
+                </a>
+                <span class="ab-star ab-star-2">✦</span>
+            </div>
         `;
-        
-        // إدراج الشريط في أول الـ Body
+
         document.body.prepend(bar);
-        
-        // دفع المحتوى لأسفل حتى لا يغطي الشريط القائمة
-        document.body.style.paddingTop = '50px';
+        document.body.style.paddingTop = '48px';
     }
 }
 
-// تشغيل الوظيفة عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', addAnnouncementBar);
-
-
 // ============================================
 // Shared layout: navbar + footer injection
 // ============================================
