@@ -32,7 +32,7 @@ function addAnnouncementBar() {
                 top: 0; left: 0;
                 width: 100%;
                 z-index: 10000;
-                min-height: 48px; /* تم تكبير حجم الشريط الإجمالي بأمان */
+                min-height: 48px; /* تم تكبير حجمالشريط الإجمالي بأمان */
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -143,7 +143,7 @@ function addAnnouncementBar() {
             <div class="ab-inner">
                 <div class="ab-badge">New Season</div>
                 <span class="ab-text">
-                    <b>STEM Asyut Deutsch Klub</b> — 2026–2027 Leadership Applications are open
+                    <b>STEM Asyut Deutsch Klub</b> — 2026–2027 Leadership Applications Are Open
                 </span>
                 <div class="ab-sep"></div>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScKWNI-QnYfjhmyy4V8K4SPtd7e2kjU_ZHF9ZROXM-cbNtsXw/viewform?usp=dialog"
@@ -158,7 +158,7 @@ function addAnnouncementBar() {
         document.body.prepend(bar);
         
         // حساب الارتفاع تلقائياً لمنع أي تداخل للمقاسات
-        // حساب الارتفاع تلقائياً لمنع أي تداخل للمقاسات
+        //قائياً لمنع أي تداخل للمقاسات
         const updatePadding = () => {
             const barHeight = bar.offsetHeight;
             document.body.style.paddingTop = barHeight + 'px';
