@@ -51,25 +51,26 @@ async function injectAuthNavItems(navMenu) {
         loggedIn = false;
     }
 
-    const accountLi = document.createElement("li");
-    accountLi.className = "nav-item nav-auth-item";
-
     if (loggedIn) {
+        const accountLi = document.createElement("li");
+        accountLi.className = "nav-item nav-auth-item auth-btn-container";
         if (verified) {
-            accountLi.innerHTML = `<a href="${authPageUrl("account.html")}" class="nav-link nav-link-account"><i class="fas fa-user"></i> ${escapeHtml(userName)}</a>`;
+            accountLi.innerHTML = `<a href="${authPageUrl("account.html")}" class="nav-link-account-pill"><i class="far fa-user-circle"></i> <span>${escapeHtml(userName)}</span></a>`;
         } else {
-            accountLi.innerHTML = `<a href="${authPageUrl("verify-email.html")}" class="nav-link nav-link-account"><i class="fas fa-envelope"></i> Verify Email</a>`;
+            accountLi.innerHTML = `<a href="${authPageUrl("verify-email.html")}" class="nav-link-account-pill verify-alert"><i class="fas fa-exclamation-circle"></i> <span>Verify Email</span></a>`;
         }
         navMenu.appendChild(accountLi);
         return;
     }
 
-    accountLi.innerHTML = `<a href="${authPageUrl("login.html")}" class="nav-link nav-link-login">Login</a>`;
-    navMenu.appendChild(accountLi);
+    const loginLi = document.createElement("li");
+    loginLi.className = "nav-item nav-auth-item";
+    loginLi.innerHTML = `<a href="${authPageUrl("login.html")}" class="nav-link nav-link-login-custom">Login</a>`;
+    navMenu.appendChild(loginLi);
 
     const signupLi = document.createElement("li");
-    signupLi.className = "nav-item nav-auth-item";
-    signupLi.innerHTML = `<a href="${authPageUrl("signup.html")}" class="nav-link nav-link-signup">Sign up</a>`;
+    signupLi.className = "nav-item nav-auth-item auth-btn-container";
+    signupLi.innerHTML = `<a href="${authPageUrl("signup.html")}" class="nav-link-signup-pill">Sign up</a>`;
     navMenu.appendChild(signupLi);
 }
 
