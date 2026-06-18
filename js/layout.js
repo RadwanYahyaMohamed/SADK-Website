@@ -158,8 +158,16 @@ function addAnnouncementBar() {
         document.body.prepend(bar);
         
         // حساب الارتفاع تلقائياً لمنع أي تداخل للمقاسات
+        // حساب الارتفاع تلقائياً لمنع أي تداخل للمقاسات
         const updatePadding = () => {
-            document.body.style.paddingTop = bar.offsetHeight + 'px';
+            const barHeight = bar.offsetHeight;
+            document.body.style.paddingTop = barHeight + 'px';
+            
+            // السطر السحري اللي بيرحل الـ navbar تحت الشريط مباشرة ومنع اختفائها
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                navbar.style.top = barHeight + 'px';
+            }
         };
         updatePadding();
         window.addEventListener('resize', updatePadding);
