@@ -19,104 +19,61 @@ function addAnnouncementBar() {
                 to   { transform: translateY(0);     opacity: 1; }
             }
             @keyframes sadk-pulse {
-                0%, 100% { box-shadow: 0 0 0 0 rgba(184,146,42,0.55); }
-                50%       { box-shadow: 0 0 0 7px rgba(184,146,42,0);  }
+                0%, 100% { box-shadow: 0 0 0 0 rgba(184,146,42,0.35); }
+                50%       { box-shadow: 0 0 0 6px rgba(184,146,42,0);  }
             }
             @keyframes sadk-arrow {
                 0%, 100% { transform: translateX(0); }
                 50%       { transform: translateX(3px); }
-            }
-            @keyframes sadk-star {
-                0%, 100% { opacity: 0.4; transform: scale(1)   rotate(0deg);  }
-                50%       { opacity: 1;   transform: scale(1.3) rotate(15deg); }
-            }
-            @keyframes sadk-dot-pulse {
-                0%, 100% { opacity: 1;   transform: scale(1);   }
-                50%       { opacity: 0.5; transform: scale(0.7); }
             }
 
             #announcement-bar {
                 position: fixed;
                 top: 0; left: 0;
                 width: 100%;
-                z-index: 9999;
-                height: 48px;
+                z-index: 10000;
+                min-height: 40px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                overflow: hidden;
-                border-bottom: 1.5px solid rgba(184,146,42,0.45);
-                background: linear-gradient(
-                    120deg,
-                    #0f172a 0%, #1a2540 15%, #7a1a14 40%,
-                    #c0392b 55%, #b8922a 72%, #1a2540 88%, #0f172a 100%
-                );
+                border-bottom: 1px solid rgba(184,146,42,0.3);
+                background: linear-gradient(120deg, #0f172a 0%, #1a2540 25%, #7a1a14 50%, #b8922a 75%, #0f172a 100%);
                 background-size: 300% 300%;
-                animation: sadk-gradient 8s ease infinite, sadk-slide-in 0.5s ease-out;
-                box-shadow:
-                    0 2px 20px rgba(192,57,43,0.35),
-                    0 1px 0 rgba(184,146,42,0.15) inset;
-            }
-
-            #announcement-bar::before {
-                content: '';
-                position: absolute;
-                top: 0; left: -70%;
-                width: 40%; height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
-                animation: sadk-shimmer 3.5s linear infinite;
-                pointer-events: none;
-            }
-
-            #announcement-bar::after {
-                content: '';
-                position: absolute;
-                bottom: 0; left: 10%;
-                width: 80%; height: 1px;
-                background: linear-gradient(90deg, transparent, rgba(240,201,64,0.8), transparent);
+                animation: sadk-gradient 10s ease infinite, sadk-slide-in 0.5s ease-out;
+                padding: 6px 16px;
+                box-sizing: border-box;
             }
 
             #announcement-bar .ab-inner {
                 display: flex;
                 align-items: center;
-                gap: 14px;
-                position: relative;
-                z-index: 1;
-                padding: 0 16px;
-                max-width: 100%;
+                justify-content: center;
+                gap: 12px;
+                max-width: 1200px;
+                width: 100%;
+                flex-wrap: nowrap;
             }
 
             #announcement-bar .ab-badge {
                 display: inline-flex;
                 align-items: center;
-                gap: 6px;
-                background: rgba(184,146,42,0.18);
-                border: 1px solid rgba(184,146,42,0.5);
+                gap: 5px;
+                background: rgba(184,146,42,0.15);
+                border: 1px solid rgba(184,146,42,0.4);
                 color: #f0c940;
                 font-size: 10px;
                 font-weight: 700;
-                letter-spacing: 1.8px;
+                letter-spacing: 1px;
                 text-transform: uppercase;
-                padding: 3px 10px;
-                border-radius: 20px;
+                padding: 2px 8px;
+                border-radius: 12px;
                 white-space: nowrap;
-                flex-shrink: 0;
-            }
-
-            #announcement-bar .ab-dot {
-                width: 5px; height: 5px;
-                border-radius: 50%;
-                background: #f0c940;
-                animation: sadk-dot-pulse 1.8s ease-in-out infinite;
-                flex-shrink: 0;
             }
 
             #announcement-bar .ab-text {
-                color: rgba(255,255,255,0.93);
-                font-size: 13.5px;
+                color: rgba(255,255,255,0.95);
+                font-size: 13px;
                 font-weight: 500;
-                letter-spacing: 0.2px;
-                white-space: nowrap;
             }
 
             #announcement-bar .ab-text b {
@@ -125,61 +82,57 @@ function addAnnouncementBar() {
             }
 
             #announcement-bar .ab-sep {
-                width: 1px; height: 18px;
+                width: 1px; height: 14px;
                 background: rgba(255,255,255,0.2);
-                flex-shrink: 0;
-            }
-
-            #announcement-bar .ab-star {
-                color: rgba(240,201,64,0.65);
-                font-size: 11px;
-                animation: sadk-star 2.4s ease-in-out infinite;
-                flex-shrink: 0;
-                user-select: none;
-            }
-
-            #announcement-bar .ab-star.ab-star-2 {
-                animation-delay: 1.2s;
             }
 
             #announcement-bar .ab-btn {
                 display: inline-flex;
                 align-items: center;
-                gap: 6px;
-                background: linear-gradient(135deg, #b8922a 0%, #f0c940 50%, #b8922a 100%);
-                background-size: 200% 200%;
+                gap: 4px;
+                background: linear-gradient(135deg, #b8922a 0%, #f0c940 100%);
                 color: #0f172a !important;
-                font-size: 12.5px;
-                font-weight: 800;
-                letter-spacing: 0.4px;
+                font-size: 11.5px;
+                font-weight: 700;
                 text-decoration: none !important;
-                padding: 5px 15px;
-                border-radius: 20px;
+                padding: 4px 12px;
+                border-radius: 12px;
                 white-space: nowrap;
-                flex-shrink: 0;
-                animation: sadk-gradient 3s ease infinite, sadk-pulse 2s ease-in-out infinite;
-                transition: transform 0.2s ease, filter 0.2s ease;
+                animation: sadk-pulse 2s infinite;
+                transition: transform 0.2s ease;
             }
 
             #announcement-bar .ab-btn:hover {
-                transform: scale(1.07);
-                filter: brightness(1.1);
-                color: #0f172a !important;
-                text-decoration: none !important;
+                transform: scale(1.04);
             }
 
             #announcement-bar .ab-arrow {
-                font-size: 13px;
-                animation: sadk-arrow 1.1s ease-in-out infinite;
+                animation: sadk-arrow 1.1s infinite;
                 display: inline-block;
             }
 
-            @media (max-width: 640px) {
-                #announcement-bar .ab-badge,
-                #announcement-bar .ab-star,
-                #announcement-bar .ab-sep  { display: none; }
-                #announcement-bar .ab-text { font-size: 12px; }
-                #announcement-bar .ab-inner { gap: 10px; }
+            @media (max-width: 768px) {
+                #announcement-bar {
+                    padding: 8px 12px;
+                }
+                #announcement-bar .ab-inner {
+                    flex-wrap: wrap;
+                    gap: 6px;
+                    justify-content: center;
+                }
+                #announcement-bar .ab-badge, 
+                #announcement-bar .ab-sep { 
+                    display: none; 
+                }
+                #announcement-bar .ab-text { 
+                    font-size: 11.5px; 
+                    text-align: center;
+                    width: 100%;
+                }
+                #announcement-bar .ab-btn {
+                    font-size: 11px;
+                    padding: 3px 10px;
+                }
             }
         `;
         document.head.appendChild(style);
@@ -188,11 +141,7 @@ function addAnnouncementBar() {
         bar.id = 'announcement-bar';
         bar.innerHTML = `
             <div class="ab-inner">
-                <span class="ab-star">✦</span>
-                <div class="ab-badge">
-                    <span class="ab-dot"></span>
-                    New Season
-                </div>
+                <div class="ab-badge">New Season</div>
                 <span class="ab-text">
                     <b>STEM Asyut Deutsch Klub</b> — 2026–2027 Leadership Applications are open
                 </span>
@@ -201,21 +150,23 @@ function addAnnouncementBar() {
                    target="_blank"
                    rel="noopener noreferrer"
                    class="ab-btn">
-                   Apply Now! <span class="ab-arrow">→</span>
+                    Apply Now! <span class="ab-arrow">→</span>
                 </a>
-                <span class="ab-star ab-star-2">✦</span>
             </div>
         `;
 
         document.body.prepend(bar);
-        document.body.style.paddingTop = '48px';
+        
+        // حساب الارتفاع تلقائياً لمنع أي تداخل للمقاسات
+        const updatePadding = () => {
+            document.body.style.paddingTop = bar.offsetHeight + 'px';
+        };
+        updatePadding();
+        window.addEventListener('resize', updatePadding);
     }
 }
 
 document.addEventListener('DOMContentLoaded', addAnnouncementBar);
-// ============================================
-// Shared layout: navbar + footer injection
-// ============================================
 
 import "./appwrite.js";
 import { injectAuthNav } from "./auth-nav.js";
@@ -226,7 +177,7 @@ function buildNavbarHTML() {
         <div class="nav-container">
             <div class="nav-logo">
                 <img src="/Logo.png" alt="Deutsch Klub Logo" class="logo-img">
-                <span class="logo-text">STEM Asyut Deutsch Klub</span>
+                <span class="logo-text">SADK</span>
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
@@ -236,11 +187,11 @@ function buildNavbarHTML() {
                     <a href="/pages/about.html" class="nav-link" data-nav="about">About Us</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-nav="learn">Learn German ▼</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-nav="learn">Learn German <i class="fas fa-chevron-down nav-chevron"></i></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item"><a class="dropdown-toggle-sub" href="/pages/Materials.html" data-nav="materials">Materials</a></li>
-                        <li class="dropdown-item">
-                            <a href="#" class="dropdown-toggle-sub">G10 ▼</a>
+                        <li class="dropdown-item dropdown-subparent">
+                            <a href="#" class="dropdown-toggle-sub">G10 <i class="fas fa-chevron-right nav-chevron-sub"></i></a>
                             <ul class="dropdown-submenu">
                                 <li class="dropdown-item">
                                     <a href="/pages/curriculum/g10/semester1/lektionen.html" class="dropdown-toggle-sub" data-nav="g10s1">Semester 1</a>
@@ -250,8 +201,8 @@ function buildNavbarHTML() {
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown-item">
-                            <a href="#" class="dropdown-toggle-sub">G11 ▼</a>
+                        <li class="dropdown-item dropdown-subparent">
+                            <a href="#" class="dropdown-toggle-sub">G11 <i class="fas fa-chevron-right nav-chevron-sub"></i></a>
                             <ul class="dropdown-submenu">
                                 <li class="dropdown-item">
                                     <a href="/pages/curriculum/g11/semester1/lektionen.html" class="dropdown-toggle-sub" data-nav="g11s1">Semester 1</a>
@@ -304,7 +255,7 @@ function buildFooterHTML() {
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLScHW62ctySetNvA77ugYEDBZ3rTEvPl_3uHlcNOVpsYtgZROw/viewform?usp=header"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Apply Now! — Members Form
+                             Apply Now! — Members Form
                         </a>
                     </li>
                 </ul>
@@ -398,6 +349,7 @@ function initHamburger() {
     hamburger.addEventListener("click", () => {
         navMenu.classList.toggle("active");
         hamburger.classList.toggle("active");
+        document.body.classList.toggle("nav-open"); // يمنع سكرول الصفحة الخلفية في الموبايل
     });
 
     navMenu.querySelectorAll("a[href]").forEach((link) => {
@@ -406,21 +358,22 @@ function initHamburger() {
         link.addEventListener("click", () => {
             navMenu.classList.remove("active");
             hamburger.classList.remove("active");
+            document.body.classList.remove("nav-open");
         });
     });
 
     navMenu.querySelectorAll(".dropdown-toggle, .dropdown-toggle-sub").forEach((toggle) => {
         toggle.addEventListener("click", (e) => {
             if (window.innerWidth > 1024) return;
-            if (toggle.getAttribute("href") === "#") {
+            if (toggle.getAttribute("href") === "#" || toggle.classList.contains("dropdown-toggle") || toggle.nextElementSibling?.classList.contains("dropdown-submenu")) {
                 e.preventDefault();
             }
 
-            const parent = toggle.closest(".dropdown, .dropdown-item");
-            const submenu = parent?.querySelector(
-                ":scope > .dropdown-menu, :scope > .dropdown-submenu"
-            );
-            if (submenu) submenu.classList.toggle("open");
+            const submenu = toggle.nextElementSibling;
+            if (submenu && (submenu.classList.contains("dropdown-menu") || submenu.classList.contains("dropdown-submenu"))) {
+                submenu.classList.toggle("open");
+                toggle.classList.toggle("submenu-expanded");
+            }
         });
     });
 
@@ -428,6 +381,7 @@ function initHamburger() {
         if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
             navMenu.classList.remove("active");
             hamburger.classList.remove("active");
+            document.body.classList.remove("nav-open");
         }
     });
 }
