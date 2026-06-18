@@ -32,7 +32,7 @@ function addAnnouncementBar() {
                 top: 0; left: 0;
                 width: 100%;
                 z-index: 10000;
-                min-height: 40px;
+                min-height: 48px; /* تم تكبير حجم الشريط الإجمالي بأمان */
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -40,7 +40,7 @@ function addAnnouncementBar() {
                 background: linear-gradient(120deg, #0f172a 0%, #1a2540 25%, #7a1a14 50%, #b8922a 75%, #0f172a 100%);
                 background-size: 300% 300%;
                 animation: sadk-gradient 10s ease infinite, sadk-slide-in 0.5s ease-out;
-                padding: 6px 16px;
+                padding: 8px 16px; /* زيادة المساحة الداخلية للشريط */
                 box-sizing: border-box;
             }
 
@@ -72,7 +72,7 @@ function addAnnouncementBar() {
 
             #announcement-bar .ab-text {
                 color: rgba(255,255,255,0.95);
-                font-size: 13px;
+                font-size: 15px; /* تم تكبير خط النص الأساسي للاب توب */
                 font-weight: 500;
             }
 
@@ -89,13 +89,13 @@ function addAnnouncementBar() {
             #announcement-bar .ab-btn {
                 display: inline-flex;
                 align-items: center;
-                gap: 4px;
+                gap: 6px;
                 background: linear-gradient(135deg, #b8922a 0%, #f0c940 100%);
                 color: #0f172a !important;
-                font-size: 11.5px;
+                font-size: 13px; /* تم تكبير خط زر التقديم للاب توب */
                 font-weight: 700;
                 text-decoration: none !important;
-                padding: 4px 12px;
+                padding: 6px 16px; /* زيادة مساحة الزر الداخلية لراحة العين */
                 border-radius: 12px;
                 white-space: nowrap;
                 animation: sadk-pulse 2s infinite;
@@ -125,13 +125,13 @@ function addAnnouncementBar() {
                     display: none; 
                 }
                 #announcement-bar .ab-text { 
-                    font-size: 11.5px; 
+                    font-size: 13px; /* حجم خط متناسق وآمن تماماً للموبايل لمنع أي تداخل */
                     text-align: center;
                     width: 100%;
                 }
                 #announcement-bar .ab-btn {
-                    font-size: 11px;
-                    padding: 3px 10px;
+                    font-size: 12px;
+                    padding: 5px 14px;
                 }
             }
         `;
@@ -158,16 +158,8 @@ function addAnnouncementBar() {
         document.body.prepend(bar);
         
         // حساب الارتفاع تلقائياً لمنع أي تداخل للمقاسات
-// حساب الارتفاع تلقائياً لمنع أي تداخل للمقاسات
         const updatePadding = () => {
-            const barHeight = bar.offsetHeight;
-            document.body.style.paddingTop = barHeight + 'px';
-            
-            // ترحيل الـ navbar برمجياً لتبدأ من تحت الـ announcement bar مباشرة
-            const navbar = document.querySelector('.navbar');
-            if (navbar) {
-                navbar.style.top = barHeight + 'px';
-            }
+            document.body.style.paddingTop = bar.offsetHeight + 'px';
         };
         updatePadding();
         window.addEventListener('resize', updatePadding);
@@ -357,7 +349,7 @@ function initHamburger() {
     hamburger.addEventListener("click", () => {
         navMenu.classList.toggle("active");
         hamburger.classList.toggle("active");
-        document.body.classList.toggle("nav-open"); // يمنع سكرول الصفحة الخلفية في الموبايل
+        document.body.classList.toggle("nav-open");
     });
 
     navMenu.querySelectorAll("a[href]").forEach((link) => {
