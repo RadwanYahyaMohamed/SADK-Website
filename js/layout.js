@@ -171,9 +171,15 @@ function addAnnouncementBar() {
         navbar.style.zIndex = '9999';
         totalPadding += navbar.offsetHeight; 
     }
-
+    
     document.body.style.paddingTop = totalPadding + 'px';
-
+   // ====== الإضافة الجديدة ======
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.minHeight = `calc(100vh - ${totalPadding}px)`;
+        hero.style.paddingTop = '0'; // إلغاء أي padding-top ثابت
+    }
+    // =============================
    };
         updatePadding();
         window.addEventListener('resize', updatePadding);
