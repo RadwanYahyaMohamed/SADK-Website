@@ -163,23 +163,24 @@ function addAnnouncementBar() {
     const barHeight = bar.offsetHeight;
     const navbar = document.querySelector('.navbar');
     
-    // هنبدأ المسافة الكلية بارتفاع الـ Announcement Bar
     let totalPadding = barHeight; 
 
     if (navbar) {
-        // السطر بتاعك زي ما هو لترحيل الـ navbar تحت الشريط
         navbar.style.top = barHeight + 'px';
-        
-        // التعديل 1: خلفية بيضاء عشان ميبقاش شفاف
         navbar.style.backgroundColor = '#ffffff';
         navbar.style.zIndex = '9999';
-        
-        // التعديل 2: تزويد ارتفاع الـ Navbar على المسافة الكلية
         totalPadding += navbar.offsetHeight; 
     }
 
-    // ترحيل الـ body بالكامل لتحت بمقدار الشريطين مع بعض
     document.body.style.paddingTop = totalPadding + 'px';
+
+    // ====== الإضافة الجديدة ======
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.minHeight = `calc(100vh - ${totalPadding}px)`;
+        hero.style.paddingTop = '0'; // إلغاء أي padding-top ثابت
+    }
+    // =============================
 };
         updatePadding();
         window.addEventListener('resize', updatePadding);
