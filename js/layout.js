@@ -1,5 +1,5 @@
 function addAnnouncementBar() {
-    const expiryDate = new Date('2026-07-03T23:59:59+03:00');
+    const expiryDate = new Date('2026-07-15T23:59:59+03:00');
     const now = new Date();
 
     if (now < expiryDate) {
