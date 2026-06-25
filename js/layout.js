@@ -160,15 +160,27 @@ function addAnnouncementBar() {
         // حساب الارتفاع تلقائياً لمنع أي تداخل للمقاسات
         //قائياً لمنع أي تداخل للمقاسات
         const updatePadding = () => {
-            const barHeight = bar.offsetHeight;
-            document.body.style.paddingTop = barHeight + 'px';
-            
-            // السطر السحري اللي بيرحل الـ navbar تحت الشريط مباشرة ومنع اختفائها
-            const navbar = document.querySelector('.navbar');
-            if (navbar) {
-                navbar.style.top = barHeight + 'px';
-            }
-        };
+    const barHeight = bar.offsetHeight;
+    const navbar = document.querySelector('.navbar');
+    
+    // هنبدأ المسافة الكلية بارتفاع الـ Announcement Bar
+    let totalPadding = barHeight; 
+
+    if (navbar) {
+        // السطر بتاعك زي ما هو لترحيل الـ navbar تحت الشريط
+        navbar.style.top = barHeight + 'px';
+        
+        // التعديل 1: خلفية بيضاء عشان ميبقاش شفاف
+        navbar.style.backgroundColor = '#ffffff';
+        navbar.style.zIndex = '9999';
+        
+        // التعديل 2: تزويد ارتفاع الـ Navbar على المسافة الكلية
+        totalPadding += navbar.offsetHeight; 
+    }
+
+    // ترحيل الـ body بالكامل لتحت بمقدار الشريطين مع بعض
+    document.body.style.paddingTop = totalPadding + 'px';
+};
         updatePadding();
         window.addEventListener('resize', updatePadding);
     }
