@@ -337,6 +337,7 @@ body.nav-open {
     place-items: center;
     text-align: center;
     overflow: hidden;
+    padding-top: 5vh;
   /*  padding-top: 72px;  حجز مساحة علوية على  لمنع تسلل الكرت تحت الهيدر المثبت */ 
 }
 
